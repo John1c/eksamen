@@ -11,13 +11,20 @@ offset_right = 799.0
 offset_bottom = 399.0
 color = Color(0, 1, 0, 1)
 
-[node name="side green" type="ColorRect" parent="."]
-offset_right = 115.0
+[node name="Right side green" type="ColorRect" parent="."]
+offset_right = 94.0
 offset_bottom = 412.0
 size_flags_horizontal = 0
 color = Color(0, 0.54902, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Left side green" type="ColorRect" parent="."]
+offset_left = 706.0
+offset_right = 800.0
+offset_bottom = 412.0
+size_flags_horizontal = 0
+color = Color(0, 0.54902, 0, 1)
+
+[node name="Top" type="ColorRect" parent="."]
 offset_right = 801.0
-offset_bottom = 87.0
-color = Color(0.619608, 0.619608, 0.619608, 1)
+offset_bottom = 67.0
+color = Color(0.498039, 0.498039, 0.498039, 1)

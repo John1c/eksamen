@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmwq1p4ckwm3f"]
+
+[ext_resource type="Script" path="res://Controller/Mainscene.cs" id="1_dklk1"]
+
+[node name="Gamecontroller" type="Node2D"]
+position = Vector2(1, -1)
+script = ExtResource("1_dklk1")
+
+[node name="wall green" type="ColorRect" parent="."]
+offset_right = 799.0
+offset_bottom = 399.0
+color = Color(0, 1, 0, 1)
+
+[node name="side green" type="ColorRect" parent="."]
+offset_right = 115.0
+offset_bottom = 412.0
+size_flags_horizontal = 0
+color = Color(0, 0.54902, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 801.0
+offset_bottom = 87.0
+color = Color(0.619608, 0.619608, 0.619608, 1)

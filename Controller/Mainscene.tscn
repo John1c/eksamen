@@ -16,7 +16,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 799.0
 offset_bottom = 399.0
-color = Color(0, 1, 0, 1)
+color = Color(0, 0.654902, 0, 1)
 
 [node name="Right side green" type="ColorRect" parent="UI"]
 layout_mode = 0
@@ -61,14 +61,16 @@ offset_bottom = 388.0
 
 [node name="Timer" type="Timer" parent="GUI"]
 
-[node name="Label" type="Label" parent="GUI/Timer"]
+[node name="TidTager" type="Label" parent="GUI/Timer"]
 offset_left = 619.0
 offset_top = 20.0
 offset_right = 659.0
 offset_bottom = 43.0
-text = "Tid:"
+text = "Tid: 0"
 
 [node name="Træk" type="Label" parent="GUI"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[connection signal="timeout" from="GUI/Timer" to="." method="_DisplayTimer"]

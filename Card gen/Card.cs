@@ -8,13 +8,8 @@ public partial class Card : Node2D
 	static List<Card> cards = new List<Card>();
 	public int Suit { get; }
     public int Rank { get; }
-	private int _cardID;
 	
 
-	public int CARDID(){
-        get{ return _cardID; }
-		set{ _cardID = value; }
-		}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -24,6 +19,7 @@ public partial class Card : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+        
 	}
 
 	public void Card_gen(){

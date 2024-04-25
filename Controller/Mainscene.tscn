@@ -13,17 +13,20 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="wall green" type="ColorRect" parent="UI"]
+layout_mode = 0
 offset_right = 799.0
 offset_bottom = 399.0
 color = Color(0, 1, 0, 1)
 
 [node name="Right side green" type="ColorRect" parent="UI"]
+layout_mode = 0
 offset_right = 94.0
 offset_bottom = 399.0
 size_flags_horizontal = 0
 color = Color(0, 0.54902, 0, 1)
 
 [node name="Left side green" type="ColorRect" parent="UI"]
+layout_mode = 0
 offset_left = 706.0
 offset_right = 800.0
 offset_bottom = 399.0
@@ -31,6 +34,7 @@ size_flags_horizontal = 0
 color = Color(0, 0.54902, 0, 1)
 
 [node name="Top" type="ColorRect" parent="UI"]
+layout_mode = 0
 offset_right = 801.0
 offset_bottom = 67.0
 color = Color(0.498039, 0.498039, 0.498039, 1)
@@ -42,12 +46,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="RestartGame" type="Button" parent="GUI"]
+layout_mode = 0
 offset_left = 634.0
 offset_top = 346.0
 offset_right = 690.0
 offset_bottom = 390.0
 
 [node name="Redo" type="Button" parent="GUI"]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 344.0
 offset_right = 170.0
@@ -63,5 +69,6 @@ offset_bottom = 43.0
 text = "Tid:"
 
 [node name="Træk" type="Label" parent="GUI"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0

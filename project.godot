@@ -13,11 +13,11 @@ config_version=5
 config/name="Kabale Eksam"
 run/main_scene="res://Controller/TitleScreen.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [display]
 
-window/size/viewport_width=800
+window/size/viewport_width=1000
 window/size/viewport_height=400
 window/size/resizable=false
 

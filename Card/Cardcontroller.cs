@@ -2,9 +2,9 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class CardSystem : Node2D
+public partial class Cardcontroller : Node2D
 {
-    List<card> cards = new List<card>();
+	List<card> cards = new List<card>();
     public class card
     {
         public int suit { get; set; } = 0; //0 = diamonds 1 = clubs 2 = hearts 3 = spades
@@ -52,6 +52,11 @@ public void ShuffleDeck(){
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+        Deck();
+        foreach (card card in cards)
+        {
+            GD.Print(card.rank + " of " + card.suit);
+        }
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

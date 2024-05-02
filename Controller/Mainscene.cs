@@ -9,8 +9,6 @@ public partial class Mainscene : Node2D
 	public Timer _Timer;
 	public int TimeStarted = 0;
 
-
-	static List<Card> cards = new List<Card>();
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

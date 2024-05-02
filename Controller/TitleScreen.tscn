@@ -6,21 +6,22 @@
 script = ExtResource("1_ikpbf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 798.0
+offset_right = 1018.0
 offset_bottom = 400.0
 color = Color(0, 0.478431, 0, 1)
 
 [node name="StartTekst" type="Label" parent="."]
-offset_right = 799.0
+offset_right = 998.0
 offset_bottom = 47.0
 text = "Kabale"
 horizontal_alignment = 1
 
 [node name="StartKnap" type="Button" parent="."]
-offset_left = 330.0
-offset_top = 180.0
-offset_right = 480.0
-offset_bottom = 285.0
+offset_left = 436.0
+offset_top = 120.0
+offset_right = 586.0
+offset_bottom = 225.0
+size_flags_horizontal = 4
 text = "Start"
 
 [connection signal="pressed" from="StartKnap" to="." method="_on_start_knap_pressed"]

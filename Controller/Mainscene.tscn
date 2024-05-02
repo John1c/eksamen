@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmwq1p4ckwm3f"]
+[gd_scene load_steps=4 format=3 uid="uid://cmwq1p4ckwm3f"]
 
 [ext_resource type="Script" path="res://Controller/Mainscene.cs" id="1_dklk1"]
+[ext_resource type="Texture2D" uid="uid://bpjhfq5phgmvm" path="res://assets/redo.png" id="2_7j4x7"]
+[ext_resource type="Texture2D" uid="uid://0ps7v7m1yhaf" path="res://assets/cardBackGreen.png" id="2_231qh"]
 
 [node name="Gamecontroller" type="Node2D"]
 position = Vector2(1, -1)
@@ -14,28 +16,30 @@ offset_bottom = 40.0
 
 [node name="wall green" type="ColorRect" parent="UI"]
 layout_mode = 0
-offset_right = 799.0
-offset_bottom = 399.0
+offset_right = 999.0
+offset_bottom = 438.0
 color = Color(0, 0.654902, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Right side green" type="ColorRect" parent="UI"]
 layout_mode = 0
 offset_right = 94.0
-offset_bottom = 399.0
+offset_bottom = 429.0
 size_flags_horizontal = 0
 color = Color(0, 0.54902, 0, 1)
 
 [node name="Left side green" type="ColorRect" parent="UI"]
 layout_mode = 0
-offset_left = 706.0
-offset_right = 800.0
-offset_bottom = 399.0
+offset_left = 835.0
+offset_top = 2.0
+offset_right = 1000.0
+offset_bottom = 401.0
 size_flags_horizontal = 0
 color = Color(0, 0.54902, 0, 1)
 
 [node name="Top" type="ColorRect" parent="UI"]
 layout_mode = 0
-offset_right = 801.0
+offset_right = 999.0
 offset_bottom = 67.0
 color = Color(0.498039, 0.498039, 0.498039, 1)
 
@@ -47,10 +51,12 @@ offset_bottom = 40.0
 
 [node name="RestartGame" type="Button" parent="GUI"]
 layout_mode = 0
-offset_left = 634.0
-offset_top = 346.0
-offset_right = 690.0
-offset_bottom = 390.0
+offset_left = 761.0
+offset_top = 345.0
+offset_right = 1281.0
+offset_bottom = 865.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("2_7j4x7")
 
 [node name="Redo" type="Button" parent="GUI"]
 layout_mode = 0
@@ -62,15 +68,96 @@ offset_bottom = 388.0
 [node name="Timer" type="Timer" parent="GUI"]
 
 [node name="TidTager" type="Label" parent="GUI/Timer"]
-offset_left = 619.0
-offset_top = 20.0
-offset_right = 659.0
-offset_bottom = 43.0
+offset_left = 897.0
+offset_top = 15.0
+offset_right = 939.0
+offset_bottom = 38.0
 text = "Tid: 0"
 
-[node name="Træk" type="Label" parent="GUI"]
+[node name="Label" type="Label" parent="GUI"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 785.0
+offset_top = 16.0
+offset_right = 884.0
+offset_bottom = 39.0
+text = "Træk:"
+
+[node name="VKort" type="HBoxContainer" parent="."]
+offset_left = 11.0
+offset_top = 77.0
+offset_right = 82.0
+offset_bottom = 197.0
+
+[node name="CardBackGreen" type="Sprite2D" parent="VKort"]
+position = Vector2(35, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="Hkort" type="BoxContainer" parent="."]
+offset_left = 846.0
+offset_top = 73.0
+offset_right = 989.0
+offset_bottom = 316.0
+
+[node name="CardBackGreen5" type="Sprite2D" parent="Hkort"]
+position = Vector2(39, 180)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen4" type="Sprite2D" parent="Hkort"]
+position = Vector2(37, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen3" type="Sprite2D" parent="Hkort"]
+position = Vector2(108, 182)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen2" type="Sprite2D" parent="Hkort"]
+position = Vector2(105, 59)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="DeckKort" type="HBoxContainer" parent="."]
+offset_left = 230.0
+offset_top = 80.0
+offset_right = 693.0
+offset_bottom = 203.0
+
+[node name="CardBackGreen" type="Sprite2D" parent="DeckKort"]
+position = Vector2(35, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen2" type="Sprite2D" parent="DeckKort"]
+position = Vector2(98, 60)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen3" type="Sprite2D" parent="DeckKort"]
+position = Vector2(165, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen4" type="Sprite2D" parent="DeckKort"]
+position = Vector2(225, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen5" type="Sprite2D" parent="DeckKort"]
+position = Vector2(288, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen6" type="Sprite2D" parent="DeckKort"]
+position = Vector2(356, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
+
+[node name="CardBackGreen7" type="Sprite2D" parent="DeckKort"]
+position = Vector2(421, 58)
+scale = Vector2(0.130096, 0.170304)
+texture = ExtResource("2_231qh")
 
 [connection signal="timeout" from="GUI/Timer" to="." method="_DisplayTimer"]

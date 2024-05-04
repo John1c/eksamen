@@ -1,25 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfufscq00nrbm"]
+[gd_scene load_steps=2 format=3 uid="uid://cfufscq00nrbm"]
 
 [ext_resource type="Script" path="res://Card/Cardcontroller.cs" id="1_8cfsx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nyy4"]
-size = Vector2(65, 101)
-
-[node name="CardController" type="Area2D"]
+[node name="CardController" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_8cfsx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(31.5, 48.5)
-shape = SubResource("RectangleShape2D_5nyy4")
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 86.0
+offset_bottom = 139.0
 
-[node name="KortForm" type="ColorRect" parent="."]
-offset_right = 30.0
-offset_bottom = 34.0
-scale = Vector2(2.16501, 2.94141)
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 2
+offset_right = 87.0
+offset_bottom = 141.0
+size_flags_vertical = 3
+color = Color(0.564706, 0.564706, 0.564706, 1)
 
-[node name="TestLabel" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 1)
-offset_right = 64.0
-offset_bottom = 99.0
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 88.0
+offset_bottom = 53.0
 text = "Nr.
-Kulør"
+Kulær.
+"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 87.0
+offset_bottom = 139.0
+
+[connection signal="button_down" from="TextureButton" to="." method="OnMouseDown"]
+[connection signal="button_up" from="TextureButton" to="." method="OnMouseUp"]

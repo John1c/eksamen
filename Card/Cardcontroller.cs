@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Cardcontroller : Control
+public partial class Cardcontroller : Node2D
 {
 		private bool isDragging = false;
 	    private int _cardID;
@@ -19,11 +19,11 @@ public partial class Cardcontroller : Control
 		set{ _CardPattern = value; }
 	}
 
-public void OnCardInstantiate(int cardID, int CardPattern){
-        _cardID = cardID;
-        _CardPattern = CardPattern;
-        _CardLabel = GetNode<Label>("CardLabel");
-        _CardLabel.Text = "ID: "+ cardID.ToString() +"\n"+ "Pattern: " + CardPattern.ToString();
+public void OnCardInstantiate(int ID, int Pattern){
+        cardID = ID;
+        CardPattern = Pattern;
+        _CardLabel = GetNode<Label>("Control/CardLabel");
+        _CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString();
     }
 
 	private Vector2 offset = new(0,0);

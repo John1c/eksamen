@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 public partial class Cardcontroller : Node2D
 {
@@ -26,7 +27,7 @@ public void OnCardInstantiate(int ID, int Pattern){
         _CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString();
     }
 
-	private Vector2 offset = new(0,0);
+	private Godot.Vector2 offset = new(0,0);
     public override void _Input(InputEvent @event)
 	{
 	// Mouse in viewport coordinates.
@@ -39,17 +40,36 @@ public void OnCardInstantiate(int ID, int Pattern){
 		} 
 	}
 
-    private void MoveWithMouse(Vector2 v)
+    private void MoveWithMouse(Godot.Vector2 v)
     {
         Position = v;
     }
     
+	public void move_to_front(){
+		GetParent().MoveChild(this, GetParent().GetChildCount());
+	}
+
     public void OnMouseDown() {
 		isDragging = true;
+		move_to_front();
 	}
 
 	public void OnMouseUp(){
 		isDragging = false;
+	}
+	public void _on_area_2d_area_entered(Area2D area){
+		GD.Print("Area Entered");
+		Stack_on_card(area);
+	}
+	public void Stack_on_card(Area2D area){
+		Cardcontroller card = area.GetParent() as Cardcontroller;
+
+		if((cardID+1 == card.cardID && (CardPattern-1 == card.CardPattern || CardPattern+1 == card.CardPattern))){
+		//move the card to the top of the stack
+		move_to_front();
+		//move the card to the position of the card it is stacked on
+        Position = card.Position + new Godot.Vector2(0, 20);
+		}
 	}
 
 	// Called when the node enters the scene tree for the first time.

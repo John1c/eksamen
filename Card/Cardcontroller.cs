@@ -9,6 +9,8 @@ public partial class Cardcontroller : Node2D
 	    private int _cardID;
         private int _CardPattern;
 	    private Label _CardLabel;
+		
+		public bool IsStacked = false;
 
     public int cardID {
 		get{ return _cardID; }
@@ -43,6 +45,7 @@ public void OnCardInstantiate(int ID, int Pattern){
     private void MoveWithMouse(Godot.Vector2 v)
     {
         Position = v;
+		IsStacked = false;
     }
     
 	public void move_to_front(){
@@ -64,11 +67,14 @@ public void OnCardInstantiate(int ID, int Pattern){
 	public void Stack_on_card(Area2D area){
 		Cardcontroller card = area.GetParent() as Cardcontroller;
 
-		if((cardID+1 == card.cardID && (CardPattern-1 == card.CardPattern || CardPattern+1 == card.CardPattern))){
+		if(isDragging && (cardID+1 == card.cardID && (CardPattern-1 == card.CardPattern || CardPattern+1 == card.CardPattern))){
 		//move the card to the top of the stack
 		move_to_front();
 		//move the card to the position of the card it is stacked on
-        Position = card.Position + new Godot.Vector2(0, 20);
+		isDragging = false;
+		IsStacked = true;
+        Position = card.Position + new Godot.Vector2(0, 60);
+		//Movecount++; senere implementering
 		}
 	}
 
@@ -81,5 +87,11 @@ public void OnCardInstantiate(int ID, int Pattern){
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		/* virker ikke endnu skal lige fået lortet til at com på hindanden
+		if(IsStacked){
+			//Move the card to the position of the card it is stacked on
+			Position = card.Position + new Godot.Vector2(0, 60);
+		}
+		*/
 	}
 }

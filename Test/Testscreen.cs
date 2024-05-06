@@ -5,6 +5,12 @@ public partial class Testscreen : Node2D
 {
 	private PackedScene cardPrefab;
 
+	public void _On_Area_1(Area2D area){
+		Cardcontroller card = area.GetParent() as Cardcontroller;
+		GD.Print("Area Entered");
+
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

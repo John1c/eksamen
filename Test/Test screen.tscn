@@ -1,6 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddoleaahl4rvt"]
+[gd_scene load_steps=3 format=3 uid="uid://ddoleaahl4rvt"]
 
 [ext_resource type="Script" path="res://Test/Testscreen.cs" id="1_p2bnh"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65cvq"]
+size = Vector2(138.278, 165)
+
+[node name="Dropzone" type="Node2D"]
+position = Vector2(-0.0848389, -0.0289917)
 script = ExtResource("1_p2bnh")
+
+[node name="1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1405.96
+offset_top = 145.566
+offset_right = 1546.96
+offset_bottom = 328.566
+
+[node name="Area2D" type="Area2D" parent="1"]
+position = Vector2(60, 83)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="1/Area2D"]
+shape = SubResource("RectangleShape2D_65cvq")
+
+[node name="ColorRect" type="ColorRect" parent="1/Area2D/CollisionShape2D"]
+offset_left = -69.6639
+offset_top = -82.6833
+offset_right = 66.3361
+offset_bottom = 91.3165
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1425.98
+offset_top = 434.614
+offset_right = 1566.98
+offset_bottom = 617.614
+
+[node name="Area2D" type="Area2D" parent="2"]
+position = Vector2(60, 83)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2/Area2D"]
+shape = SubResource("RectangleShape2D_65cvq")
+
+[node name="ColorRect" type="ColorRect" parent="2/Area2D/CollisionShape2D"]
+offset_left = -69.6639
+offset_top = -82.6833
+offset_right = 66.3361
+offset_bottom = 91.3165
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1451.51
+offset_top = 719.64
+offset_right = 1592.51
+offset_bottom = 902.64
+
+[node name="Area2D" type="Area2D" parent="3"]
+position = Vector2(60, 83)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="3/Area2D"]
+shape = SubResource("RectangleShape2D_65cvq")
+
+[node name="ColorRect" type="ColorRect" parent="3/Area2D/CollisionShape2D"]
+offset_left = -69.6639
+offset_top = -82.6833
+offset_right = 66.3361
+offset_bottom = 91.3165
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

@@ -11,8 +11,12 @@ public partial class Cardcontroller : Node2D
 	private Label _CardLabel;
 
 	public bool IsStacked = false;
+	public bool IsStacked_on_finish = false;
 
 	public Cardcontroller Stacked_on_card;
+	public Cardcontroller Stacked_on_finish_card;
+	public Testscreen Stacked_on_finish_dropzone;
+	public Control Stacked_on_finish_area;
 
 	public int cardID
 	{
@@ -74,12 +78,20 @@ public partial class Cardcontroller : Node2D
 	}
 	public void _on_area_2d_area_entered(Area2D area)
 	{
-		//GD.Print("Area Entered");
-		if(!IsStacked)Stack_on_card(area);
-	}
-	public void Stack_on_card(Area2D area)
-	{
+		GD.Print(area.GetParent().Name);
+			if(area.GetParent().Name == CardPattern.ToString()){
+			Control dropzone = area.GetParent() as Control;
+			Stack_on_finish_dropzone(area, dropzone);
+		}
+		else
+		{
 		Cardcontroller card = area.GetParent() as Cardcontroller;
+		if(!IsStacked)Stack_on_card(area, card);
+		if(card.IsStacked_on_finish)Stack_on_finish_card(area, card);
+		}
+	}
+	public void Stack_on_card(Area2D area, Cardcontroller card)
+	{
 		Stacked_on_card = card;
 
 		if (isDragging && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
@@ -95,7 +107,31 @@ public partial class Cardcontroller : Node2D
 			//Movecount++;
 		}
 	}
-
+	public void Stack_on_finish_card(Area2D area, Cardcontroller card){
+		if(isDragging && cardID == card.cardID+1 && CardPattern == card.CardPattern){
+		
+		isDragging = false;
+		IsStacked_on_finish = true;
+		Stacked_on_finish_card = card;
+		ZIndex = Stacked_on_finish_card.ZIndex + 1;
+		Position = Stacked_on_finish_card.Position;
+		
+		}
+	}
+	public void Stack_on_finish_dropzone(Area2D area, Control card){
+		if(isDragging && cardID == 1){
+		GD.Print("Stacked on finish");//bruges lige til debugging
+		Stacked_on_finish_area = card;
+		isDragging = false;
+		IsStacked_on_finish = true;
+		ZIndex = Stacked_on_finish_area.ZIndex + 1;
+		Position = Stacked_on_finish_area.Position;
+		
+		}
+	}
+	public void _stack_es_on_finish(){
+		
+	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

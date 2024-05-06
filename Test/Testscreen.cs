@@ -27,7 +27,7 @@ private void InstantiateCard()
     	{
 				GD.Print("j="+ j +" I=" + i);
 			Cardcontroller instantiatecard = cardPrefab.Instantiate<Node2D>() as Cardcontroller;
-			instantiatecard.Position =  new Vector2(0, 0);
+			instantiatecard.Position =  new Vector2(i*100, j*10);
 			instantiatecard.OnCardInstantiate(j,i);
 			AddChild(instantiatecard);
 

@@ -14,6 +14,7 @@ public partial class Cardcontroller : Node2D
 
 	public bool IsStacked = false;
 	public bool IsStacked_on_finish = false;
+	public bool IsStacked_on_deck = false;
 
 	public Cardcontroller Stacked_on_card;
 	public Cardcontroller Stacked_on_finish_card;
@@ -166,6 +167,7 @@ public partial class Cardcontroller : Node2D
 		{
 			Stacked_on_Deck_area = card;
 			isDragging = false;
+			IsStacked_on_deck = true;
 			ZIndex = Stacked_on_Deck_area.ZIndex + 1;
 			Position = Stacked_on_Deck_area.Position;
 		}

@@ -88,6 +88,7 @@ public partial class Cardcontroller : Node2D
 	public void OnMouseDown()
 	{
     if(faceUp){
+	move_to_front();
 	isDragging = true;
 	}
 	}
@@ -99,8 +100,6 @@ public partial class Cardcontroller : Node2D
 
 	public void _on_area_2d_area_entered(Area2D area)
 	{
-		if(faceUp)
-		{
 		if(area.GetParent().Name == CardPattern.ToString())
 		{
 		Control dropzone = area.GetParent() as Control;
@@ -118,12 +117,11 @@ public partial class Cardcontroller : Node2D
 		if(card.IsStacked_on_finish)Stack_on_finish_card(area, card);
 		}
 	}
-	}
 	public void Stack_on_card(Area2D area, Cardcontroller card)
 	{
 		Stacked_on_card = card;
 
-		if (isDragging && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
+		if (isDragging && card.faceUp && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
 		{
 			// Check if the card being stacked on has a lower ID and the patterns have opposite parity
 			move_to_front();

@@ -101,16 +101,19 @@ texture = ExtResource("2_231qh")
 
 [node name="DeckKort" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 371.0
-offset_top = 80.0
-offset_right = 1418.0
-offset_bottom = 275.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="0" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 155.0
+offset_left = 380.862
+offset_top = 80.7145
+offset_right = 535.862
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="DeckKort/0"]
 position = Vector2(60, 83)
@@ -129,10 +132,10 @@ metadata/_edit_use_anchors_ = true
 [node name="1" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 147.862
-offset_top = -0.285522
-offset_right = 302.862
-offset_bottom = -0.285522
+offset_left = 550.862
+offset_top = 80.7145
+offset_right = 705.862
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="DeckKort/1"]
 position = Vector2(60, 83)
@@ -141,9 +144,9 @@ position = Vector2(60, 83)
 shape = SubResource("RectangleShape2D_pge1r")
 
 [node name="ColorRect" type="ColorRect" parent="DeckKort/1/Area2D/CollisionShape2D"]
-offset_left = -69.6639
+offset_left = -71.6639
 offset_top = -82.6833
-offset_right = 66.3361
+offset_right = 64.3361
 offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
@@ -151,10 +154,10 @@ metadata/_edit_use_anchors_ = true
 [node name="2" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 301.862
-offset_top = -0.285522
-offset_right = 456.862
-offset_bottom = -0.285522
+offset_left = 720.862
+offset_top = 80.7145
+offset_right = 875.862
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="DeckKort/2"]
 position = Vector2(60, 83)
@@ -173,10 +176,10 @@ metadata/_edit_use_anchors_ = true
 [node name="3" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 449.862
-offset_top = 3.71448
-offset_right = 604.862
-offset_bottom = 3.71448
+offset_left = 895.862
+offset_top = 80.7145
+offset_right = 1050.86
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="DeckKort/3"]
 position = Vector2(60, 83)
@@ -195,10 +198,10 @@ metadata/_edit_use_anchors_ = true
 [node name="4" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 595.862
-offset_top = 5.71448
-offset_right = 750.862
-offset_bottom = 5.71448
+offset_left = 1060.86
+offset_top = 80.7145
+offset_right = 1215.86
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="DeckKort/4"]
 position = Vector2(60, 83)
@@ -217,10 +220,10 @@ metadata/_edit_use_anchors_ = true
 [node name="5" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 751.862
-offset_top = 7.71448
-offset_right = 906.862
-offset_bottom = 7.71448
+offset_left = 1220.86
+offset_top = 80.7145
+offset_right = 1375.86
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="DeckKort/5"]
 position = Vector2(60, 83)
@@ -239,10 +242,10 @@ metadata/_edit_use_anchors_ = true
 [node name="6" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 901.862
-offset_top = 7.71448
-offset_right = 1056.86
-offset_bottom = 7.71448
+offset_left = 1380.86
+offset_top = 80.7145
+offset_right = 1535.86
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="DeckKort/6"]
 position = Vector2(60, 83)
@@ -260,16 +263,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Hkort" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 1649.0
-offset_top = 68.0
-offset_right = 1804.0
-offset_bottom = 907.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="0" type="Control" parent="Hkort"]
 layout_mode = 2
 anchors_preset = 0
-offset_right = 155.0
+offset_left = 1660.86
+offset_top = 80.7145
+offset_right = 1815.86
+offset_bottom = 80.7145
 
 [node name="Area2D" type="Area2D" parent="Hkort/0"]
 position = Vector2(60, 83)
@@ -288,10 +294,10 @@ metadata/_edit_use_anchors_ = true
 [node name="1" type="Control" parent="Hkort"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 5.6499
-offset_top = 230.764
-offset_right = 160.65
-offset_bottom = 416.764
+offset_left = 1662.86
+offset_top = 280.714
+offset_right = 1817.86
+offset_bottom = 466.714
 
 [node name="Area2D" type="Area2D" parent="Hkort/1"]
 position = Vector2(60, 83)
@@ -310,10 +316,10 @@ metadata/_edit_use_anchors_ = true
 [node name="2" type="Control" parent="Hkort"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 2.65332
-offset_top = 437.531
-offset_right = 157.653
-offset_bottom = 437.531
+offset_left = 1660.86
+offset_top = 476.714
+offset_right = 1815.86
+offset_bottom = 476.714
 
 [node name="Area2D" type="Area2D" parent="Hkort/2"]
 position = Vector2(60, 83)
@@ -332,10 +338,10 @@ metadata/_edit_use_anchors_ = true
 [node name="3" type="Control" parent="Hkort"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 11.6431
-offset_top = 632.311
-offset_right = 166.643
-offset_bottom = 632.311
+offset_left = 1659.86
+offset_top = 676.714
+offset_right = 1814.86
+offset_bottom = 676.714
 
 [node name="Area2D" type="Area2D" parent="Hkort/3"]
 position = Vector2(60, 83)

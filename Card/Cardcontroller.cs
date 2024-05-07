@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public partial class Cardcontroller : Node2D
 {
-	
-	
-  	private bool _faceUp = true;
+
+
+	private bool _faceUp = true;
 	private bool isDragging = false;
 	private int _cardID;
 	private int _CardPattern;
@@ -19,6 +19,7 @@ public partial class Cardcontroller : Node2D
 	public Cardcontroller Stacked_on_finish_card;
 	public Testscreen Stacked_on_finish_dropzone;
 	public Control Stacked_on_finish_area;
+	public Control Stacked_on_Deck_area;
 
 	public int cardID
 	{
@@ -32,33 +33,35 @@ public partial class Cardcontroller : Node2D
 		set { _CardPattern = value; }
 	}
 
-   public bool faceUp {
-		get{ return _faceUp; }
-		set{ _faceUp = value; }
-    }
-    public void OnCardInstantiate(int ID, int Pattern){
-        cardID = ID;
-        CardPattern = Pattern;
-        _CardLabel = GetNode<Label>("Control/CardLabel");
-        _CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString(); 
-    }
-    
-    // Tjekker om kortet er faceup eller facedown.
-    public void UpdateCard()
+	public bool faceUp
 	{
-		if(faceUp)
-		{
-        	_CardLabel.Show();
+		get { return _faceUp; }
+		set { _faceUp = value; }
+	}
+	public void OnCardInstantiate(int ID, int Pattern)
+	{
+		cardID = ID;
+		CardPattern = Pattern;
+		_CardLabel = GetNode<Label>("Control/CardLabel");
+		_CardLabel.Text = "ID: " + ID.ToString() + "\n" + "Pattern: " + Pattern.ToString();
+	}
 
-		} 
-		if(!faceUp)
+	// Tjekker om kortet er faceup eller facedown.
+	public void UpdateCard()
+	{
+		if (faceUp)
+		{
+			_CardLabel.Show();
+
+		}
+		if (!faceUp)
 		{
 			_CardLabel.Hide();
-			
+
 		}
 	}
-      private Vector2 offset = new(0,0);
-      public override void _Input(InputEvent @event)
+	private Vector2 offset = new(0, 0);
+	public override void _Input(InputEvent @event)
 	{
 		// Mouse in viewport coordinates.
 		if (@event is InputEventMouseMotion eventMouseMotion)
@@ -74,7 +77,7 @@ public partial class Cardcontroller : Node2D
 		}
 	}
 
-			private void MoveWithMouse(Godot.Vector2 v)
+	private void MoveWithMouse(Godot.Vector2 v)
 	{
 		Position = v;
 		IsStacked = false;
@@ -87,10 +90,11 @@ public partial class Cardcontroller : Node2D
 
 	public void OnMouseDown()
 	{
-    if(faceUp){
-	move_to_front();
-	isDragging = true;
-	}
+		if (faceUp)
+		{
+			move_to_front();
+			isDragging = true;
+		}
 	}
 
 	public void OnMouseUp()
@@ -100,21 +104,21 @@ public partial class Cardcontroller : Node2D
 
 	public void _on_area_2d_area_entered(Area2D area)
 	{
-		if(area.GetParent().Name == CardPattern.ToString())
+		if (area.GetParent().Name == CardPattern.ToString())
 		{
-		Control dropzone = area.GetParent() as Control;
-		Stack_on_finish_dropzone(area, dropzone);
+			Control dropzone = area.GetParent() as Control;
+			Stack_on_finish_dropzone(area, dropzone);
 		}
-		if(area.GetParent().Name == CardPattern.ToString())
+		if (area.GetParent().GetParent().Name == "DeckKort")
 		{
-		Control dropzone = area.GetParent() as Control;
-		Stack_on_finish_dropzone(area, dropzone);
+			Control Deck_Stack = area.GetParent() as Control;
+			Stack_on_Deck(area, Deck_Stack);
 		}
 		else
 		{
-		Cardcontroller card = area.GetParent() as Cardcontroller;
-		if(!IsStacked)Stack_on_card(area, card);
-		if(card.IsStacked_on_finish)Stack_on_finish_card(area, card);
+			Cardcontroller card = area.GetParent() as Cardcontroller;
+			if (!IsStacked) Stack_on_card(area, card);
+			if (card.IsStacked_on_finish) Stack_on_finish_card(area, card);
 		}
 	}
 	public void Stack_on_card(Area2D area, Cardcontroller card)
@@ -134,26 +138,41 @@ public partial class Cardcontroller : Node2D
 			//Movecount++;
 		}
 	}
-	public void Stack_on_finish_card(Area2D area, Cardcontroller card){
-		if(isDragging && cardID == card.cardID+1 && CardPattern == card.CardPattern){
-		isDragging = false;
-		IsStacked_on_finish = true;
-		Stacked_on_finish_card = card;
-		ZIndex = Stacked_on_finish_card.ZIndex + 1;
-		Position = Stacked_on_finish_card.Position;
-		}
-	}
-	public void Stack_on_finish_dropzone(Area2D area, Control card){
-		if(isDragging && cardID == 1)
+	public void Stack_on_finish_card(Area2D area, Cardcontroller card)
+	{
+		if (isDragging && cardID == card.cardID + 1 && CardPattern == card.CardPattern)
 		{
-		Stacked_on_finish_area = card;
-		isDragging = false;
-		IsStacked_on_finish = true;
-		ZIndex = Stacked_on_finish_area.ZIndex + 1;
-		Position = Stacked_on_finish_area.Position;
+			isDragging = false;
+			IsStacked_on_finish = true;
+			Stacked_on_finish_card = card;
+			ZIndex = Stacked_on_finish_card.ZIndex + 1;
+			Position = Stacked_on_finish_card.Position;
 		}
 	}
-	
+	public void Stack_on_finish_dropzone(Area2D area, Control card)
+	{
+		if (isDragging && cardID == 1)
+		{
+			Stacked_on_finish_area = card;
+			isDragging = false;
+			IsStacked_on_finish = true;
+			ZIndex = Stacked_on_finish_area.ZIndex + 1;
+			Position = Stacked_on_finish_area.Position;
+		}
+	}
+	public void Stack_on_Deck(Area2D area, Control card)
+	{
+
+		GD.Print(card.Name);
+		if (isDragging && cardID == 13)
+		{
+			Stacked_on_Deck_area = card;
+			isDragging = false;
+			ZIndex = Stacked_on_Deck_area.ZIndex + 1;
+			Position = Stacked_on_Deck_area.Position;
+		}
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

@@ -49,10 +49,12 @@ public partial class Cardcontroller : Node2D
 		if(faceUp)
 		{
         	_CardLabel.Show();
+
 		} 
 		if(!faceUp)
 		{
 			_CardLabel.Hide();
+			
 		}
 	}
       private Vector2 offset = new(0,0);
@@ -85,7 +87,9 @@ public partial class Cardcontroller : Node2D
 
 	public void OnMouseDown()
 	{
-    isDragging = true;
+    if(faceUp){
+	isDragging = true;
+	}
 	}
 
 	public void OnMouseUp()
@@ -95,10 +99,13 @@ public partial class Cardcontroller : Node2D
 
 	public void _on_area_2d_area_entered(Area2D area)
 	{
+		if(faceUp)
+		{
 		GD.Print(area.GetParent().Name);
-			if(area.GetParent().Name == CardPattern.ToString()){
-			Control dropzone = area.GetParent() as Control;
-			Stack_on_finish_dropzone(area, dropzone);
+		if(area.GetParent().Name == CardPattern.ToString())
+		{
+		Control dropzone = area.GetParent() as Control;
+		Stack_on_finish_dropzone(area, dropzone);
 		}
 		else
 		{
@@ -106,7 +113,7 @@ public partial class Cardcontroller : Node2D
 		if(!IsStacked)Stack_on_card(area, card);
 		if(card.IsStacked_on_finish)Stack_on_finish_card(area, card);
 		}
-	}
+	}}
 	public void Stack_on_card(Area2D area, Cardcontroller card)
 	{
 		Stacked_on_card = card;

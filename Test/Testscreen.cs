@@ -37,19 +37,23 @@ private void InstantiateCard()
 			Cardcontroller instantiatecard = cardPrefab.Instantiate<Node2D>() as Cardcontroller;
 			instantiatecard.OnCardInstantiate(j,i);
 			
+			if(i%2==0){
+				instantiatecard.faceUp = false;
+			}
+
 			cards.Add(instantiatecard); // Add the card to the list
 //			GD.Print("ID: " + instantiatecard.cardID + " Pattern: " + instantiatecard.CardPattern);
 //			GD.Print(instantiatecard.CardPattern);
-			}
 		}
-		ShuffleDeck();
-		for (int i = 0; i < cards.Count; i++){
-		cards[i].Position =  new Vector2(i*20, 0);
-		
-		AddChild(cards[i]);
-		}
-		
 	}
+		ShuffleDeck();
+		for (int i = 0; i < cards.Count; i++)
+		{
+			cards[i].Position =  new Vector2(i*30, i%3*150);
+			AddChild(cards[i]);
+			cards[i].UpdateCard();
+		}
+}
 public void ShuffleDeck(){
 	//randomize the deck
 	GD.Print("Shuffling deck");

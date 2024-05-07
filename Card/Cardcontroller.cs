@@ -91,9 +91,10 @@ public partial class Cardcontroller : Node2D
 	public void OnMouseDown() //
 	{
 	if(faceUp){
-	move_to_front();
-	isDragging = true;
-	}
+	 move_to_front();
+	 IsStacked = false;
+	 isDragging = true;
+	 }
 	}
 
 	public void OnMouseUp()
@@ -103,22 +104,21 @@ public partial class Cardcontroller : Node2D
 
 	public void _on_area_2d_area_entered(Area2D area)
 	{
+		Cardcontroller card = area.GetParent() as Cardcontroller;
+		Control dropzone = area.GetParent() as Control;
+
+
+
 		if (area.GetParent().Name == CardPattern.ToString())
 		{
-			Control dropzone = area.GetParent() as Control;
 			Stack_on_finish_dropzone(area, dropzone);
 		}
 		if (area.GetParent().GetParent().Name == "DeckKort")
 		{
-			Control Deck_Stack = area.GetParent() as Control;
-			Stack_on_Deck(area, Deck_Stack);
+			Stack_on_Deck(area, dropzone);
 		}
-		else
-		{
-			Cardcontroller card = area.GetParent() as Cardcontroller;
 			if (!IsStacked) Stack_on_card(area, card);
 			if (card.IsStacked_on_finish) Stack_on_finish_card(area, card);
-		}
 	}
 	public void Stack_on_card(Area2D area, Cardcontroller card)
 	{
@@ -186,7 +186,6 @@ public partial class Cardcontroller : Node2D
 		if (IsStacked)
 		{
 			//Move the card to the position of the card it is stacked on
-			move_to_front();
 			ZIndex = Stacked_on_card.ZIndex + 1;
 			Position = Stacked_on_card.Position + new Godot.Vector2(0, 60);
 		}

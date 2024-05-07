@@ -6,6 +6,7 @@ public partial class Testscreen : Node2D
 	List<Cardcontroller> cards = new List<Cardcontroller>();
 	private PackedScene cardPrefab;
 	List<List<Cardcontroller>> piles = new List<List<Cardcontroller>>();
+	List<Cardcontroller> inPlay = new List<Cardcontroller>();
 
 
 	public void _On_Area_1(Area2D area){
@@ -20,6 +21,7 @@ public partial class Testscreen : Node2D
 		cardPrefab = ResourceLoader.Load("uid://cfufscq00nrbm") as PackedScene;
 		InstantiateCard();
 		PileMaker();
+		draw_card();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -107,8 +109,6 @@ public void PileMaker()
 	{
 	//	cards.Add(piles[i][0]);
 		piles[i].RemoveAt(0);
-		GD.Print("Bunke: " + piles[i].Count.ToString());
-		GD.Print("BUnker " + piles.Count.ToString());
 		if(piles[i].Count == 0)
 		{
 			piles.RemoveAt(i);
@@ -121,5 +121,21 @@ public void PileMaker()
 	}	
 	}
 	}
+//NOT draw_card() IS NOT FINISHED	
+	public void draw_card()
+	{
+		GD.Print("cards: " + cards.Count.ToString());
+		if(/*when mouse down*/){
+			inPlay.Add(cards[0]);
+			inPlay[i].faceUp = true;
+			inPlay[i].UpdateCard();
+			cards.RemoveAt(0);
+
+
+		}
+
+	} 
+
+
 }
 

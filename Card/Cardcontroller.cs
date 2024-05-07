@@ -80,7 +80,6 @@ public partial class Cardcontroller : Node2D
 	private void MoveWithMouse(Godot.Vector2 v)
 	{
 		Position = v;
-		IsStacked = false;
 	}
 
 	public void move_to_front()
@@ -88,12 +87,14 @@ public partial class Cardcontroller : Node2D
 		GetParent().MoveChild(this, GetParent().GetChildCount());
 	}
 
-	public void OnMouseDown()
+	public void OnMouseDown() //
 	{
 		if (faceUp)
 		{
 			move_to_front();
 			isDragging = true;
+			IsStacked = false;
+
 		}
 	}
 

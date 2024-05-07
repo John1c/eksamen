@@ -7,7 +7,7 @@ public partial class Cardcontroller : Node2D
 		private bool isDragging = false;
 	    private int _cardID;
         private int _CardPattern;
-		private bool _faceUp = false;
+		private bool _faceUp = true;
 	    private Label _CardLabel;
 
     public int cardID {
@@ -29,8 +29,21 @@ public void OnCardInstantiate(int ID, int Pattern){
         cardID = ID;
         CardPattern = Pattern;
         _CardLabel = GetNode<Label>("Control/CardLabel");
-        _CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString();
+        _CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString(); 
     }
+// Tjekker om kortet
+public void UpdateCard()
+	{
+		if(faceUp == true)
+		{
+        	_CardLabel.Show();
+		} 
+		if(faceUp == false)
+		{
+			_CardLabel.Hide();
+		}
+	}
+
 
 	private Vector2 offset = new(0,0);
     public override void _Input(InputEvent @event)

@@ -6,7 +6,7 @@ public partial class Cardcontroller : Node2D
 {
 	
 	
-  private bool _faceUp = true;
+  	private bool _faceUp = true;
 	private bool isDragging = false;
 	private int _cardID;
 	private int _CardPattern;

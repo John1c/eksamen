@@ -17,7 +17,6 @@ public partial class Testscreen : Node2D
 	{
 		cardPrefab = ResourceLoader.Load("uid://cfufscq00nrbm") as PackedScene;
 		InstantiateCard();
-		ShuffleDeck();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,16 +35,20 @@ private void InstantiateCard()
 		{
 			//	GD.Print("j="+ j +" I=" + i);
 			Cardcontroller instantiatecard = cardPrefab.Instantiate<Node2D>() as Cardcontroller;
-			instantiatecard.Position =  new Vector2(i*100, j*25);
-
 			instantiatecard.OnCardInstantiate(j,i);
-			AddChild(instantiatecard);
 			
 			cards.Add(instantiatecard); // Add the card to the list
 //			GD.Print("ID: " + instantiatecard.cardID + " Pattern: " + instantiatecard.CardPattern);
 //			GD.Print(instantiatecard.CardPattern);
 			}
 		}
+		ShuffleDeck();
+		for (int i = 0; i < cards.Count; i++){
+		cards[i].Position =  new Vector2(i*20, 0);
+		
+		AddChild(cards[i]);
+		}
+		
 	}
 public void ShuffleDeck(){
 	//randomize the deck

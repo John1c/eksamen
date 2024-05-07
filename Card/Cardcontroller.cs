@@ -1,10 +1,12 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 
 public partial class Cardcontroller : Node2D
 {
+	
+	
+  private bool _faceUp = true;
 	private bool isDragging = false;
 	private int _cardID;
 	private int _CardPattern;
@@ -30,16 +32,31 @@ public partial class Cardcontroller : Node2D
 		set { _CardPattern = value; }
 	}
 
-	public void OnCardInstantiate(int ID, int Pattern)
+   public bool faceUp {
+		get{ return _faceUp; }
+		set{ _faceUp = value; }
+    }
+    public void OnCardInstantiate(int ID, int Pattern){
+        cardID = ID;
+        CardPattern = Pattern;
+        _CardLabel = GetNode<Label>("Control/CardLabel");
+        _CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString(); 
+    }
+    
+    // Tjekker om kortet er faceup eller facedown.
+    public void UpdateCard()
 	{
-		cardID = ID;
-		CardPattern = Pattern;
-		_CardLabel = GetNode<Label>("Control/CardLabel");
-		_CardLabel.Text = "ID: " + ID.ToString() + "\n" + "Pattern: " + Pattern.ToString();
+		if(faceUp)
+		{
+        	_CardLabel.Show();
+		} 
+		if(!faceUp)
+		{
+			_CardLabel.Hide();
+		}
 	}
-
-	private Godot.Vector2 offset = new(0, 0);
-	public override void _Input(InputEvent @event)
+      private Vector2 offset = new(0,0);
+      public override void _Input(InputEvent @event)
 	{
 		// Mouse in viewport coordinates.
 		if (@event is InputEventMouseMotion eventMouseMotion)
@@ -55,7 +72,7 @@ public partial class Cardcontroller : Node2D
 		}
 	}
 
-	private void MoveWithMouse(Godot.Vector2 v)
+			private void MoveWithMouse(Godot.Vector2 v)
 	{
 		Position = v;
 		IsStacked = false;
@@ -68,14 +85,14 @@ public partial class Cardcontroller : Node2D
 
 	public void OnMouseDown()
 	{
-		isDragging = true;
-		move_to_front();
+    isDragging = true;
 	}
 
 	public void OnMouseUp()
 	{
 		isDragging = false;
 	}
+
 	public void _on_area_2d_area_entered(Area2D area)
 	{
 		GD.Print(area.GetParent().Name);
@@ -139,6 +156,7 @@ public partial class Cardcontroller : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
 		if (IsStacked)
 		{
 			//Move the card to the position of the card it is stacked on

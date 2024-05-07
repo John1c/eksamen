@@ -37,9 +37,9 @@ private void InstantiateCard()
 			Cardcontroller instantiatecard = cardPrefab.Instantiate<Node2D>() as Cardcontroller;
 			instantiatecard.OnCardInstantiate(j,i);
 			
-			if(i%2==0){
-				instantiatecard.faceUp = false;
-			}
+//			if(i%2==0){
+//				instantiatecard.faceUp = false;
+//			}
 
 			cards.Add(instantiatecard); // Add the card to the list
 //			GD.Print("ID: " + instantiatecard.cardID + " Pattern: " + instantiatecard.CardPattern);

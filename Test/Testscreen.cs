@@ -6,6 +6,12 @@ public partial class Testscreen : Node2D
 	List<Cardcontroller> cards = new List<Cardcontroller>();
 	private PackedScene cardPrefab;
 
+	public void _On_Area_1(Area2D area){
+		Cardcontroller card = area.GetParent() as Cardcontroller;
+		GD.Print("Area Entered");
+
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -31,6 +37,7 @@ private void InstantiateCard()
 			//	GD.Print("j="+ j +" I=" + i);
 			Cardcontroller instantiatecard = cardPrefab.Instantiate<Node2D>() as Cardcontroller;
 			instantiatecard.Position =  new Vector2(i*100, j*25);
+
 			instantiatecard.OnCardInstantiate(j,i);
 			AddChild(instantiatecard);
 			

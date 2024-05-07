@@ -146,9 +146,7 @@ public partial class Cardcontroller : Node2D
 		
 		}
 	}
-	public void _stack_es_on_finish(){
-		
-	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

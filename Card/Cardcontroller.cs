@@ -15,12 +15,14 @@ public partial class Cardcontroller : Node2D
 	public bool IsStacked = false;
 	public bool IsStacked_on_finish = false;
 	public bool IsStacked_on_deck = false;
+	public bool Has_card_stacked = false;
 
 	public Cardcontroller Stacked_on_card;
 	public Cardcontroller Stacked_on_finish_card;
 	public Testscreen Stacked_on_finish_dropzone;
 	public Control Stacked_on_finish_area;
 	public Control Stacked_on_Deck_area;
+	public Vector2 Prev_pos;
 
 	public int cardID
 	{
@@ -93,13 +95,24 @@ public partial class Cardcontroller : Node2D
 	if(faceUp){
 	 move_to_front();
 	 IsStacked = false;
+	 IsStacked_on_finish = false;
+	 IsStacked_on_deck = false;
 	 isDragging = true;
+	 Prev_pos = Position;
+	 }
+	 if(Stacked_on_card.Has_card_stacked){ // Hvis kort bliver flyttet bliver det kort over markeret, så den ved at den er gået
+		 Stacked_on_card.Has_card_stacked = false;
 	 }
 	}
 
 	public void OnMouseUp()
 	{
 		isDragging = false;
+		if (!IsStacked && !IsStacked_on_finish && !IsStacked_on_deck)
+		{
+			Position = Prev_pos;
+		}
+		
 	}
 
 	public void _on_area_2d_area_entered(Area2D area)
@@ -124,13 +137,13 @@ public partial class Cardcontroller : Node2D
 	{
 		Stacked_on_card = card;
 
-		if (isDragging && card.faceUp && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
+		if (!Stacked_on_card.Has_card_stacked && isDragging && card.faceUp && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
 		{
 			// Check if the card being stacked on has a lower ID and the patterns have opposite parity
-			move_to_front();
 			if (!IsStacked)
 			{
 				isDragging = false;
+				Stacked_on_card.Has_card_stacked = true;
 				Position = card.Position + new Godot.Vector2(0, 60);
 				IsStacked = true;
 			}
@@ -154,6 +167,7 @@ public partial class Cardcontroller : Node2D
 		{
 			Stacked_on_finish_area = card;
 			isDragging = false;
+			IsStacked = false;
 			IsStacked_on_finish = true;
 			ZIndex = Stacked_on_finish_area.ZIndex + 1;
 			Position = Stacked_on_finish_area.Position;
@@ -167,6 +181,7 @@ public partial class Cardcontroller : Node2D
 		{
 			Stacked_on_Deck_area = card;
 			isDragging = false;
+			IsStacked = false;
 			IsStacked_on_deck = true;
 			ZIndex = Stacked_on_Deck_area.ZIndex + 1;
 			Position = Stacked_on_Deck_area.Position;

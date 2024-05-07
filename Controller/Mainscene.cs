@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class Mainscene : Node2D
 {
-    public Label _TidTager;
+	public Label _TidTager;
 	public Timer _Timer;
 	public int TimeStarted = 0;
 

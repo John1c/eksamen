@@ -5,6 +5,8 @@ public partial class Testscreen : Node2D
 {
 	List<Cardcontroller> cards = new List<Cardcontroller>();
 	private PackedScene cardPrefab;
+	List<List<Cardcontroller>> piles = new List<List<Cardcontroller>>();
+
 
 	public void _On_Area_1(Area2D area){
 		Cardcontroller card = area.GetParent() as Cardcontroller;
@@ -17,6 +19,7 @@ public partial class Testscreen : Node2D
 	{
 		cardPrefab = ResourceLoader.Load("uid://cfufscq00nrbm") as PackedScene;
 		InstantiateCard();
+		PileMaker();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,6 +68,35 @@ public void ShuffleDeck(){
 		cards[i] = cards[r];
 		cards[r] = temp;
 	}
+}
+public void PileMaker()
+{
+	for(int i = 0; i < 7; i++)
+	{
+	List<Cardcontroller> tempPile = new List<Cardcontroller>();	
+		for(int j = 0; j < i+1; j++)
+		{
+			tempPile.Add(cards[0]);
+			tempPile[j].faceUp = false;
+			tempPile[j].UpdateCard();
+			
+			//GD.Print(tempPile[j].cardID);	
+		
+			//GD.Print(cards[0].cardID);
+			cards.Remove(cards[0]);
+			//GD.Print(cards[0].cardID.ToString() + "\n");
+			tempPile[j].Position = new Vector2(i*75,j*150);
+			//GD.Print(i);
+			//GD.Print(j);
+		}
+	tempPile[tempPile.Count-1].faceUp = true;
+	tempPile[tempPile.Count-1].UpdateCard();
+	GD.Print(tempPile[0].faceUp);
+	
+	piles.Add(tempPile);
+	}
+	piles[0][0].Position = new Vector2(0,400);
+	GD.Print(piles[6][6].cardID);
 }
 
 }

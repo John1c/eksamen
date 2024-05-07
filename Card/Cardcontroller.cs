@@ -33,7 +33,6 @@ public partial class Cardcontroller : Node2D
 		set { _CardPattern = value; }
 	}
 
-<<<<<<< Updated upstream
 	public bool faceUp
 	{
 		get { return _faceUp; }
@@ -46,25 +45,6 @@ public partial class Cardcontroller : Node2D
 		_CardLabel = GetNode<Label>("Control/CardLabel");
 		_CardLabel.Text = "ID: " + ID.ToString() + "\n" + "Pattern: " + Pattern.ToString();
 	}
-=======
-   public bool faceUp {
-		get{ return _faceUp; }
-		set{ _faceUp = value; }
-	}
-	public void OnCardInstantiate(int ID, int Pattern){
-		cardID = ID;
-		CardPattern = Pattern;
-		_CardLabel = GetNode<Label>("Control/CardLabel");
-		_CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString(); 
-	}
-	
-	// Tjekker om kortet er faceup eller facedown.
-	public void UpdateCard()
-	{
-		if(faceUp)
-		{
-			_CardLabel.Show();
->>>>>>> Stashed changes
 
 	// Tjekker om kortet er faceup eller facedown.
 	public void UpdateCard()
@@ -80,13 +60,8 @@ public partial class Cardcontroller : Node2D
 
 		}
 	}
-<<<<<<< Updated upstream
 	private Vector2 offset = new(0, 0);
 	public override void _Input(InputEvent @event)
-=======
-	  private Vector2 offset = new(0,0);
-	  public override void _Input(InputEvent @event)
->>>>>>> Stashed changes
 	{
 		// Mouse in viewport coordinates.
 		if (@event is InputEventMouseMotion eventMouseMotion)
@@ -114,20 +89,10 @@ public partial class Cardcontroller : Node2D
 
 	public void OnMouseDown() //
 	{
-<<<<<<< Updated upstream
-		if (faceUp)
-		{
-			move_to_front();
-			isDragging = true;
-			IsStacked = false;
-
-		}
-=======
 	if(faceUp){
 	move_to_front();
 	isDragging = true;
 	}
->>>>>>> Stashed changes
 	}
 
 	public void OnMouseUp()
@@ -182,7 +147,6 @@ public partial class Cardcontroller : Node2D
 			Position = Stacked_on_finish_card.Position;
 		}
 	}
-<<<<<<< Updated upstream
 	public void Stack_on_finish_dropzone(Area2D area, Control card)
 	{
 		if (isDragging && cardID == 1)
@@ -206,9 +170,6 @@ public partial class Cardcontroller : Node2D
 			Position = Stacked_on_Deck_area.Position;
 		}
 	}
-=======
-	
->>>>>>> Stashed changes
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

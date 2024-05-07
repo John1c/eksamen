@@ -95,9 +95,7 @@ public void PileMaker()
 	
 	piles.Add(tempPile);
 	}
-	piles[0][0].Position = new Vector2(0,400);
-	GD.Print(piles[6][6].cardID);
-}
+	}
 
 }
 

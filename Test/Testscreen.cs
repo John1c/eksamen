@@ -37,9 +37,6 @@ private void InstantiateCard()
 			cards.Add(instantiatecard); // Add the card to the list
 //			GD.Print("ID: " + instantiatecard.cardID + " Pattern: " + instantiatecard.CardPattern);
 //			GD.Print(instantiatecard.CardPattern);
-			if (i==1){
-				instantiatecard.UpdateCard();
-			}
 			}
 		}
 	}

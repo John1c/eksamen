@@ -31,7 +31,7 @@ public void OnCardInstantiate(int ID, int Pattern){
         _CardLabel = GetNode<Label>("Control/CardLabel");
         _CardLabel.Text = "ID: "+ ID.ToString() +"\n"+ "Pattern: " + Pattern.ToString(); 
     }
-// Tjekker om kortet
+// Tjekker om kortet er faceup eller facedown.
 public void UpdateCard()
 	{
 		if(faceUp == true)

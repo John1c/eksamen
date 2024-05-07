@@ -101,11 +101,14 @@ public partial class Cardcontroller : Node2D
 	{
 		if(faceUp)
 		{
-		GD.Print(area.GetParent().Name);
 		if(area.GetParent().Name == CardPattern.ToString())
 		{
 		Control dropzone = area.GetParent() as Control;
 		Stack_on_finish_dropzone(area, dropzone);
+			if(area.GetParent().Name == CardPattern.ToString()){
+			Control dropzone = area.GetParent() as Control;
+			Stack_on_finish_dropzone(area, dropzone);
+
 		}
 		else
 		{
@@ -133,24 +136,21 @@ public partial class Cardcontroller : Node2D
 	}
 	public void Stack_on_finish_card(Area2D area, Cardcontroller card){
 		if(isDragging && cardID == card.cardID+1 && CardPattern == card.CardPattern){
-		
 		isDragging = false;
 		IsStacked_on_finish = true;
 		Stacked_on_finish_card = card;
 		ZIndex = Stacked_on_finish_card.ZIndex + 1;
 		Position = Stacked_on_finish_card.Position;
-		
 		}
 	}
 	public void Stack_on_finish_dropzone(Area2D area, Control card){
-		if(isDragging && cardID == 1){
-		GD.Print("Stacked on finish");//bruges lige til debugging
+		if(isDragging && cardID == 1)
+		{
 		Stacked_on_finish_area = card;
 		isDragging = false;
 		IsStacked_on_finish = true;
 		ZIndex = Stacked_on_finish_area.ZIndex + 1;
 		Position = Stacked_on_finish_area.Position;
-		
 		}
 	}
 	

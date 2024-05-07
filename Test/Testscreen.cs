@@ -25,6 +25,7 @@ public partial class Testscreen : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		update_pile();
 	}
 	
 	
@@ -85,7 +86,7 @@ public void PileMaker()
 			//GD.Print(cards[0].cardID);
 			cards.Remove(cards[0]);
 			//GD.Print(cards[0].cardID.ToString() + "\n");
-			tempPile[j].Position = new Vector2(i*75,j*150);
+			tempPile[j].Position = new Vector2(i*75,j*110);
 			//GD.Print(i);
 			//GD.Print(j);
 		}
@@ -96,6 +97,18 @@ public void PileMaker()
 	piles.Add(tempPile);
 	}
 	}
-
+	public void update_pile()
+	{
+	for(int i = 0; i < 7; i++)
+	{ 
+	if(piles[i][piles[i].Count-1].IsStacked || piles[i][piles[i].Count-1].IsStacked_on_finish/*	 || piles[i][piles[i].Count-1].IsStacked_on_deck*/)
+	{
+		cards.Add(piles[i][piles[i].Count-1]);
+		piles[i].RemoveAt(piles[i].Count-1);
+		piles[i][piles[i].Count-1].faceUp = true;
+		piles[i][piles[i].Count-1].UpdateCard();
+	}	
+	}
+	}
 }
 

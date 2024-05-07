@@ -15,6 +15,7 @@ public partial class Cardcontroller : Node2D
 	public bool IsStacked = false;
 	public bool IsStacked_on_finish = false;
 	public bool IsStacked_on_deck = false;
+	public bool Has_card_stacked = false;
 
 	public Cardcontroller Stacked_on_card;
 	public Cardcontroller Stacked_on_finish_card;
@@ -95,6 +96,9 @@ public partial class Cardcontroller : Node2D
 	 IsStacked = false;
 	 isDragging = true;
 	 }
+	 if(Stacked_on_card.Has_card_stacked){ // Hvis kort bliver flyttet bliver det kort over markeret, så den ved at den er gået
+		 Stacked_on_card.Has_card_stacked = false;
+	 }
 	}
 
 	public void OnMouseUp()
@@ -124,13 +128,14 @@ public partial class Cardcontroller : Node2D
 	{
 		Stacked_on_card = card;
 
-		if (isDragging && card.faceUp && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
+		if (!Stacked_on_card.Has_card_stacked && isDragging && card.faceUp && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
 		{
 			// Check if the card being stacked on has a lower ID and the patterns have opposite parity
 			move_to_front();
 			if (!IsStacked)
 			{
 				isDragging = false;
+				Stacked_on_card.Has_card_stacked = true;
 				Position = card.Position + new Godot.Vector2(0, 60);
 				IsStacked = true;
 			}

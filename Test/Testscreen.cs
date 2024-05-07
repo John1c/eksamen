@@ -90,23 +90,34 @@ public void PileMaker()
 			//GD.Print(i);
 			//GD.Print(j);
 		}
-	tempPile[tempPile.Count-1].faceUp = true;
-	tempPile[tempPile.Count-1].UpdateCard();
-	GD.Print(tempPile[0].faceUp);
+	tempPile.Reverse();
+	tempPile[0].faceUp = true;
+	tempPile[0].UpdateCard();
+//	GD.Print(tempPile[0].faceUp);
 	
 	piles.Add(tempPile);
+	GD.Print("Cap: " + piles[i].Capacity.ToString());
 	}
 	}
 	public void update_pile()
 	{
-	for(int i = 0; i < 7; i++)
+	for(int i = 0; i < piles.Count; i++)
 	{ 
-	if(piles[i][piles[i].Count-1].IsStacked || piles[i][piles[i].Count-1].IsStacked_on_finish/*	 || piles[i][piles[i].Count-1].IsStacked_on_deck*/)
+	if(piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish	 || piles[i][0].IsStacked_on_deck)
 	{
-		cards.Add(piles[i][piles[i].Count-1]);
-		piles[i].RemoveAt(piles[i].Count-1);
-		piles[i][piles[i].Count-1].faceUp = true;
-		piles[i][piles[i].Count-1].UpdateCard();
+	//	cards.Add(piles[i][0]);
+		piles[i].RemoveAt(0);
+		GD.Print("Bunke: " + piles[i].Count.ToString());
+		GD.Print("BUnker " + piles.Count.ToString());
+		if(piles[i].Count == 0)
+		{
+			piles.RemoveAt(i);
+			break;
+		}
+		piles[i][0].faceUp = true;
+		piles[i][0].UpdateCard();
+		
+		
 	}	
 	}
 	}

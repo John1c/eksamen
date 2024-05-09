@@ -10,12 +10,6 @@ public partial class Testscreen : Node2D
 	List<bool> states = new List<bool>();
 	private int buttonPress = 0;
 
-	public void _On_Area_1(Area2D area){
-		Cardcontroller card = area.GetParent() as Cardcontroller;
-		GD.Print("Area Entered");
-
-	}
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

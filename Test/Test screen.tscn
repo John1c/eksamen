@@ -241,3 +241,17 @@ offset_right = 66.3361
 offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -3.0
+offset_top = 68.0
+offset_right = 183.0
+offset_bottom = 244.0
+
+[node name="ColorRect" type="ColorRect" parent="TextureButton"]
+layout_mode = 0
+offset_right = 148.0
+offset_bottom = 141.0
+color = Color(1, 0.901961, 0.901961, 1)
+
+[connection signal="pressed" from="TextureButton" to="." method="draw_card"]

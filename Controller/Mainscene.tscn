@@ -54,6 +54,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Button" type="Button" parent="GUI"]
+offset_left = 109.0
+offset_top = 68.0
+offset_right = 281.0
+offset_bottom = 244.0
+
 [node name="RestartGame" type="Button" parent="GUI"]
 layout_mode = 0
 offset_left = 1534.0
@@ -351,10 +357,5 @@ offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_left = -3.0
-offset_top = 68.0
-offset_right = 183.0
-offset_bottom = 244.0
-
+[connection signal="pressed" from="GUI/Button" to="." method="update_pile"]
 [connection signal="timeout" from="GUI/Timer" to="." method="_DisplayTimer"]

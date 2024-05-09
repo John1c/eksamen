@@ -28,6 +28,16 @@ public partial class Testscreen : Node2D
 	public override void _Process(double delta)
 	{
 		update_pile();
+		
+		GD.Print(inPlay[inPlay.Count-1].IsStacked);
+//		if(inPlay[inPlay.Count-1].IsStacked || inPlay[inPlay.Count-1].IsStacked_on_finish || inPlay[inPlay.Count-1].IsStacked_on_deck){
+//		inPlay[inPlay.Count-1].is_at_start = false;
+//		GD.Print(inPlay.Count-1);
+//		inPlay.RemoveAt(inPlay.Count-1);
+//		GD.Print(inPlay.Count-1);
+//		inPlay[inPlay.Count-1].faceUp = true;
+//		inPlay[inPlay.Count-1].UpdateCard();
+//			}
 	}
 	
 	
@@ -121,14 +131,7 @@ public void PileMaker()
 		piles[i][0].faceUp = true;
 		piles[i][0].UpdateCard();				
 	}	
-	if(inPlay[inPlay.Count-1].IsStacked || inPlay[inPlay.Count-1].IsStacked_on_finish	 || inPlay[inPlay.Count-1].IsStacked_on_deck){
-		inPlay[inPlay.Count-1].is_at_start = false;
-		inPlay.RemoveAt(inPlay.Count-1);
 
-		inPlay[inPlay.Count-1].faceUp = true;
-		inPlay[inPlay.Count-1].UpdateCard();
-
-	}
 	}
 	}
 
@@ -138,6 +141,8 @@ private void draw_card()
 		buttonPress++;
 		int length = inPlay.Count-1;
 		//GD.Print(buttonPress);
+		
+		//tilføjer kort som kan ses og trækkes ud fra det resterende dæk
 		if(cards.Count == 1){
 			inPlay.Add(cards[0]);
 			cards.Clear();
@@ -157,33 +162,35 @@ private void draw_card()
 				GD.Print(i);
 			}
 			inPlay.Clear();
-			ShuffleDeck();
 			for (int i = 0; i < cards.Count; i++)
 				{
 				cards[i].Position =  new Vector2(400, 0);
-				AddChild(cards[i]);
+				cards[i].faceUp = false;
 				cards[i].UpdateCard();
 				}
 		}
-
 		inPlay[length].is_at_start = true;
 		inPlay[length].faceUp = true;
 		inPlay[length].UpdateCard();
-		inPlay[length].Position = new Vector2(290+10*buttonPress,300);
+		
 		if(buttonPress > 3){
 			inPlay[length-1].Position = new Vector2(460,300);
 			inPlay[length-2].Position = new Vector2(380,300);
 			inPlay[length].Position = new Vector2(540,300);
-			if(buttonPress == 22){
+		if(buttonPress == 22){
 				buttonPress = 0;
 			}
+		} else {
+			inPlay[length].Position = new Vector2(380+80*buttonPress,300);
 		}
 
-		if(length > 1){
+		if(length > 0){
 		inPlay[length-1].faceUp = false;
 		inPlay[length-1].UpdateCard();
 		}
-		GD.Print(cards.Count);
-		GD.Print(length);
+			GD.Print(inPlay[length].cardID);
+
+//		GD.Print(cards.Count);
+//		GD.Print(length);
 }
 }

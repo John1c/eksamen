@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Cardcontroller : Node2D
 {
 
-// Globale varibler
+	// Globale varibler
 	private bool _faceUp = true;
 	private bool isDragging = false;
 	private int _cardID;
@@ -25,7 +25,9 @@ public partial class Cardcontroller : Node2D
 	public Control Stacked_on_Deck_area;
 	public Vector2 Prev_pos;
 
-//Get og set metoder
+	public Testscreen Testscreen = new Testscreen();
+
+	//Get og set metoder
 	public int cardID
 	{
 		get { return _cardID; }
@@ -83,7 +85,7 @@ public partial class Cardcontroller : Node2D
 			}
 		}
 	}
-// Metode til at flytte position med musen.
+	// Metode til at flytte position med musen.
 	private void MoveWithMouse(Godot.Vector2 v)
 	{
 		Position = v;
@@ -93,20 +95,22 @@ public partial class Cardcontroller : Node2D
 	{
 		GetParent().MoveChild(this, GetParent().GetChildCount());
 	}
- // Metode til når den detecter at man holder musen nede på kortet.
+	// Metode til når den detecter at man holder musen nede på kortet.
 	public void OnMouseDown() //
 	{
-	if(faceUp){
-	 move_to_front();
-	 IsStacked = false;
-	 IsStacked_on_finish = false;
-	 IsStacked_on_deck = false;
-	 isDragging = true;
-	 Prev_pos = Position;
-	 }
-	 if(Stacked_on_card.Has_card_stacked){ // Hvis kort bliver flyttet bliver det kort over markeret, så den ved at den er gået
-		 Stacked_on_card.Has_card_stacked = false;
-	 }
+		if (faceUp)
+		{
+			move_to_front();
+			IsStacked = false;
+			IsStacked_on_finish = false;
+			IsStacked_on_deck = false;
+			isDragging = true;
+			Prev_pos = Position;
+		}
+		if (Stacked_on_card.Has_card_stacked)
+		{ // Hvis kort bliver flyttet bliver det kort over markeret, så den ved at den er gået
+			Stacked_on_card.Has_card_stacked = false;
+		}
 	}
 	// Metode til når man slipper musen.
 	public void OnMouseUp()
@@ -117,9 +121,9 @@ public partial class Cardcontroller : Node2D
 		{
 			Position = Prev_pos;
 		}
-		
+
 	}
-// Metode til når kortet er i kontakt med et andet kort.
+	// Metode til når kortet er i kontakt med et andet kort.
 	public void _on_area_2d_area_entered(Area2D area)
 	{
 		// Når den detecter et object i area definere den enten et control eller cardcontroller
@@ -130,34 +134,34 @@ public partial class Cardcontroller : Node2D
 		//tjekker for esser ved navn på control og kort pattern
 		if (area.GetParent().Name == CardPattern.ToString())
 		{
-			Stack_on_finish_dropzone(area, dropzone);
+			Stack_on_finish_dropzone(dropzone);
 		}
 		//tjekker for navnet af dens parent af parent får at få navnet på det øverste for at se om en konge kan placeres
 		if (area.GetParent().GetParent().Name == "DeckKort")
 		{
-			Stack_on_Deck(area, dropzone);
+			Stack_on_Deck(dropzone);
 		}
 		//tjekker for om kortet er stacked på et andet kort eller om det er ved start eller på et færdigt kort og handler ud fra det
-			if (!IsStacked && !card.is_at_start) Stack_on_card(area, card);
-			if (card.IsStacked_on_finish) Stack_on_finish_card(area, card);
+		if (!IsStacked && !card.is_at_start) Stack_on_card(card);
+		if (card.IsStacked_on_finish) Stack_on_finish_card(card);
 	}
 	// Metode til når kortet skal stacke på et andet kort
-	public void Stack_on_card(Area2D area, Cardcontroller card)
+	public void Stack_on_card(Cardcontroller card)
 	{
 		Stacked_on_card = card;
 		//lang if sætning som tjekker om det kan stack på et kort og om mønstrene er forskellige og om de er lige eller ulige
 		if (!card.Has_card_stacked && isDragging && card.faceUp && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
 		{
 			// forskellige bools bliver sat til true og false og bliver flyttet til kortet som det stacker på
-				isDragging = false;
-				card.Has_card_stacked = true;
-				Position = card.Position + new Godot.Vector2(0, 60);
-				IsStacked = true;
-				is_at_start = false;
+			isDragging = false;
+			card.Has_card_stacked = true;
+			Position = card.Position + new Godot.Vector2(0, 60);
+			IsStacked = true;
+			is_at_start = false;
 		}
 	}
-// Metode til når kortet skal stacke på et færdigt kort
-	public void Stack_on_finish_card(Area2D area, Cardcontroller card)
+	// Metode til når kortet skal stacke på et færdigt kort
+	public void Stack_on_finish_card(Cardcontroller card)
 	{
 		if (isDragging && cardID == card.cardID + 1 && CardPattern == card.CardPattern)
 		{
@@ -171,7 +175,7 @@ public partial class Cardcontroller : Node2D
 		}
 	}
 	// Metode til når kortet skal stacke på et færdigt zone så kun for esser
-	public void Stack_on_finish_dropzone(Area2D area, Control card)
+	public void Stack_on_finish_dropzone(Control card)
 	{
 		if (isDragging && cardID == 1)
 		{
@@ -186,19 +190,22 @@ public partial class Cardcontroller : Node2D
 		}
 	}
 	// Metode til når kortet skal stacke på dækket kun for konger
-	public void Stack_on_Deck(Area2D area, Control card)
+	public void Stack_on_Deck(Control card)
 	{
 
-		if (isDragging && cardID == 13)
+		for (int i = 0; i < Testscreen.states.Count; i++)
 		{
-			//relativt det samme som stack_on_card metoden med få ændringer
-			Stacked_on_Deck_area = card;
-			isDragging = false;
-			IsStacked = false;
-			is_at_start = false;
-			IsStacked_on_deck = true;
-			ZIndex = Stacked_on_Deck_area.ZIndex + 1;
-			Position = Stacked_on_Deck_area.Position;
+			if (Testscreen.states[i] == true && ((i + 1) * 10).ToString() == card.Name && isDragging && cardID == 13)
+			{
+				//relativt det samme som stack_on_card metoden med få ændringer
+				Stacked_on_Deck_area = card;
+				isDragging = false;
+				IsStacked = false;
+				is_at_start = false;
+				IsStacked_on_deck = true;
+				ZIndex = Stacked_on_Deck_area.ZIndex + 1;
+				Position = Stacked_on_Deck_area.Position;
+			}
 		}
 	}
 
@@ -211,7 +218,7 @@ public partial class Cardcontroller : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-// Hvis kortet er stacked på et andet kort så flytter det sig til kortet det er stacked på som konstant bliver opdateret
+		// Hvis kortet er stacked på et andet kort så flytter det sig til kortet det er stacked på som konstant bliver opdateret
 		if (IsStacked)
 		{
 			//Move the card to the position of the card it is stacked on

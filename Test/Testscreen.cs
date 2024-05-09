@@ -64,15 +64,7 @@ public partial class Testscreen : Node2D
 			cards[i].UpdateCard();
 		}
 	}
-<<<<<<< Updated upstream
 	public void ShuffleDeck()
-=======
-}
-
-public void PileMaker()
-{
-	for(int i = 0; i < 7; i++)
->>>>>>> Stashed changes
 	{
 		//randomize the deck
 		GD.Print("Shuffling deck");
@@ -84,7 +76,6 @@ public void PileMaker()
 			cards[i] = cards[r];
 			cards[r] = temp;
 		}
-<<<<<<< Updated upstream
 	}
 	public void PileMaker()
 	{
@@ -124,26 +115,6 @@ public void PileMaker()
 	public void update_pile()
 	{
 		for (int i = 0; i < piles.Count; i++)
-=======
-	tempPile.Reverse();
-	tempPile[0].faceUp = true;
-	tempPile[0].UpdateCard();
-	bool occupyState = true;
-	states.Add(occupyState);
-	GD.Print(states[i]);
-
-	
-	piles.Add(tempPile);
-	GD.Print("Cap: " + piles[i].Capacity.ToString());
-	}
-	
-	}
-	public void update_pile()
-	{
-	for(int i = 0; i < piles.Count; i++)
-	{ 
-	if(piles[i].Count == 0 /*&& states[i] == false*/)
->>>>>>> Stashed changes
 		{
 			if (piles[i].Count == 0)
 			{

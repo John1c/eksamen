@@ -100,6 +100,7 @@ public partial class Cardcontroller : Node2D
 	 IsStacked_on_deck = false;
 	 isDragging = true;
 	 Prev_pos = Position;
+	 is_at_start = false;
 	 }
 	 if(Stacked_on_card.Has_card_stacked){ // Hvis kort bliver flyttet bliver det kort over markeret, så den ved at den er gået
 		 Stacked_on_card.Has_card_stacked = false;
@@ -109,9 +110,10 @@ public partial class Cardcontroller : Node2D
 	public void OnMouseUp()
 	{
 		isDragging = false;
-		if (!IsStacked && !IsStacked_on_finish && !IsStacked_on_deck && faceUp)
+		if (faceUp && !IsStacked && !IsStacked_on_finish && !IsStacked_on_deck)
 		{
 			Position = Prev_pos;
+			is_at_start = true;
 		}
 		
 	}
@@ -177,7 +179,6 @@ public partial class Cardcontroller : Node2D
 	public void Stack_on_Deck(Area2D area, Control card)
 	{
 
-		GD.Print(card.Name);
 		if (isDragging && cardID == 13)
 		{
 			Stacked_on_Deck_area = card;

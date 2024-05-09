@@ -63,7 +63,7 @@ public partial class Mainscene : Node2D
 		ShuffleDeck();
 		for (int i = 0; i < cards.Count; i++)
 		{
-			cards[i].Position = new Vector2(i * 30, i % 3 * 150);
+			cards[i].Position = new Vector2(0, 0);
 			AddChild(cards[i]);
 			cards[i].UpdateCard();
 		}
@@ -92,7 +92,7 @@ public partial class Mainscene : Node2D
 				tempPile[j].faceUp = false;
 				tempPile[j].UpdateCard();
 				cards.Remove(cards[0]);
-				tempPile[j].Position = new Vector2(i * 75, j * 110);
+				tempPile[j].Position = new Vector2(380 + i * 170, 85 + j * 65);
 			}
 			tempPile.Reverse();
 			tempPile[0].faceUp = true;

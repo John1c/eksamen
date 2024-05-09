@@ -7,7 +7,7 @@ public partial class Testscreen : Node2D
 	private PackedScene cardPrefab;
 	List<List<Cardcontroller>> piles = new List<List<Cardcontroller>>();
 	List<Cardcontroller> inPlay = new List<Cardcontroller>();
-
+	private int buttonPress = 0;
 
 	public void _On_Area_1(Area2D area){
 		Cardcontroller card = area.GetParent() as Cardcontroller;
@@ -21,7 +21,7 @@ public partial class Testscreen : Node2D
 		cardPrefab = ResourceLoader.Load("uid://cfufscq00nrbm") as PackedScene;
 		InstantiateCard();
 		PileMaker();
-		draw_card();
+		//draw_card();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -95,7 +95,7 @@ public void PileMaker()
 	tempPile.Reverse();
 	tempPile[0].faceUp = true;
 	tempPile[0].UpdateCard();
-//	GD.Print(tempPile[0].faceUp);
+
 	
 	piles.Add(tempPile);
 	GD.Print("Cap: " + piles[i].Capacity.ToString());
@@ -112,36 +112,78 @@ public void PileMaker()
 		if(piles[i].Count == 0)
 		{
 			piles.RemoveAt(i);
+//			piles[i].Clear();
 			break;
-		}
+		} 
+//		else if(piles[i].Count > 0){
+//
+//		}
 		piles[i][0].faceUp = true;
-		piles[i][0].UpdateCard();
-		
-		
+		piles[i][0].UpdateCard();				
 	}	
+	if(inPlay[inPlay.Count-1].IsStacked || inPlay[inPlay.Count-1].IsStacked_on_finish	 || inPlay[inPlay.Count-1].IsStacked_on_deck){
+		inPlay[inPlay.Count-1].is_at_start = false;
+		inPlay.RemoveAt(inPlay.Count-1);
+
+		inPlay[inPlay.Count-1].faceUp = true;
+		inPlay[inPlay.Count-1].UpdateCard();
+
 	}
 	}
-//NOT draw_card() IS NOT FINISHED	
-	public void draw_card()
-	{
-		GD.Print("cards: " + cards.Count.ToString());
-		/*
-		//if(when mouse down)
-		/*
-		{
+	}
+
+
+private void draw_card()
+{
+		buttonPress++;
+		int length = inPlay.Count-1;
+		//GD.Print(buttonPress);
+		if(cards.Count == 1){
 			inPlay.Add(cards[0]);
-			inPlay[i].faceUp = true;
-			inPlay[i].UpdateCard();
-			cards.RemoveAt(0);
-
-
+			cards.Clear();
+		} else if(cards.Count > 0){
+			inPlay.Add(cards[0]);
+//			inPlay[length].Show();
+			cards.RemoveAt(0);	
+		} 
+		//Fylder cards op når den er tom
+		else if(cards.Count == 0){
+			GD.Print("Hello World");
+			inPlay.Reverse();
+			for(int i = 0; i < inPlay.Count;i++){
+				cards.Add(inPlay[i]);
+				cards[cards.Count-1].faceUp = false;
+//				cards[cards.Count-1].Hide();
+				GD.Print(i);
+			}
+			inPlay.Clear();
+			ShuffleDeck();
+			for (int i = 0; i < cards.Count; i++)
+				{
+				cards[i].Position =  new Vector2(400, 0);
+				AddChild(cards[i]);
+				cards[i].UpdateCard();
+				}
 		}
-		/*
-		*/
 
+		inPlay[length].is_at_start = true;
+		inPlay[length].faceUp = true;
+		inPlay[length].UpdateCard();
+		inPlay[length].Position = new Vector2(290+10*buttonPress,300);
+		if(buttonPress > 3){
+			inPlay[length-1].Position = new Vector2(460,300);
+			inPlay[length-2].Position = new Vector2(380,300);
+			inPlay[length].Position = new Vector2(540,300);
+			if(buttonPress == 22){
+				buttonPress = 0;
+			}
+		}
 
-	} 
-
-
+		if(length > 1){
+		inPlay[length-1].faceUp = false;
+		inPlay[length-1].UpdateCard();
+		}
+		GD.Print(cards.Count);
+		GD.Print(length);
 }
-
+}

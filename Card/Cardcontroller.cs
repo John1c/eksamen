@@ -16,6 +16,7 @@ public partial class Cardcontroller : Node2D
 	public bool IsStacked_on_finish = false;
 	public bool IsStacked_on_deck = false;
 	public bool Has_card_stacked = false;
+	public bool is_at_start = false;
 
 	public Cardcontroller Stacked_on_card;
 	public Cardcontroller Stacked_on_finish_card;
@@ -130,7 +131,7 @@ public partial class Cardcontroller : Node2D
 		{
 			Stack_on_Deck(area, dropzone);
 		}
-			if (!IsStacked) Stack_on_card(area, card);
+			if (!IsStacked && !is_at_start) Stack_on_card(area, card);
 			if (card.IsStacked_on_finish) Stack_on_finish_card(area, card);
 	}
 	public void Stack_on_card(Area2D area, Cardcontroller card)

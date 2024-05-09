@@ -125,7 +125,10 @@ public void PileMaker()
 	public void draw_card()
 	{
 		GD.Print("cards: " + cards.Count.ToString());
-		if(/*when mouse down*/){
+		/*
+		//if(when mouse down)
+		/*
+		{
 			inPlay.Add(cards[0]);
 			inPlay[i].faceUp = true;
 			inPlay[i].UpdateCard();
@@ -133,6 +136,9 @@ public void PileMaker()
 
 
 		}
+		/*
+		*/
+
 
 	} 
 

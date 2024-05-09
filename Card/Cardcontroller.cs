@@ -25,8 +25,6 @@ public partial class Cardcontroller : Node2D
 	public Control Stacked_on_Deck_area;
 	public Vector2 Prev_pos;
 
-	public Testscreen Testscreen = new Testscreen();
-
 	//Get og set metoder
 	public int cardID
 	{
@@ -169,9 +167,8 @@ public partial class Cardcontroller : Node2D
 			isDragging = false;
 			IsStacked_on_finish = true;
 			is_at_start = false;
-			Stacked_on_finish_card = card;
-			ZIndex = Stacked_on_finish_card.ZIndex + 1;
-			Position = Stacked_on_finish_card.Position;
+			ZIndex = card.ZIndex + 1;
+			Position = card.Position;
 		}
 	}
 	// Metode til når kortet skal stacke på et færdigt zone så kun for esser
@@ -180,31 +177,27 @@ public partial class Cardcontroller : Node2D
 		if (isDragging && cardID == 1)
 		{
 			//relativt det samme som stack_on_card metoden med få ændringer
-			Stacked_on_finish_area = card;
 			isDragging = false;
 			IsStacked = false;
 			is_at_start = false;
 			IsStacked_on_finish = true;
-			ZIndex = Stacked_on_finish_area.ZIndex + 1;
-			Position = Stacked_on_finish_area.Position;
+			ZIndex = card.ZIndex + 1;
+			Position = card.Position;
 		}
 	}
 	// Metode til når kortet skal stacke på dækket kun for konger
 	public void Stack_on_Deck(Control card)
 	{
-
-		for (int i = 0; i < Testscreen.states.Count; i++)
 		{
-			if (Testscreen.states[i] == true && ((i + 1) * 10).ToString() == card.Name && isDragging && cardID == 13)
+			if (isDragging && cardID == 13)
 			{
 				//relativt det samme som stack_on_card metoden med få ændringer
-				Stacked_on_Deck_area = card;
 				isDragging = false;
 				IsStacked = false;
 				is_at_start = false;
 				IsStacked_on_deck = true;
-				ZIndex = Stacked_on_Deck_area.ZIndex + 1;
-				Position = Stacked_on_Deck_area.Position;
+				ZIndex = card.ZIndex + 1;
+				Position = card.Position;
 			}
 		}
 	}

@@ -87,7 +87,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="01" type="Control" parent="DeckKort"]
+[node name="10" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 315.165
@@ -95,20 +95,20 @@ offset_top = 675.484
 offset_right = 470.165
 offset_bottom = 675.484
 
-[node name="Area2D" type="Area2D" parent="DeckKort/01"]
+[node name="Area2D" type="Area2D" parent="DeckKort/10"]
 position = Vector2(60, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/01/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/10/Area2D"]
 shape = SubResource("RectangleShape2D_y3p84")
 
-[node name="ColorRect" type="ColorRect" parent="DeckKort/01/Area2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="DeckKort/10/Area2D/CollisionShape2D"]
 offset_left = -69.6639
 offset_top = -82.6833
 offset_right = 66.3361
 offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 
-[node name="11" type="Control" parent="DeckKort"]
+[node name="20" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 463.027
@@ -116,13 +116,13 @@ offset_top = 675.198
 offset_right = 618.027
 offset_bottom = 675.198
 
-[node name="Area2D" type="Area2D" parent="DeckKort/11"]
+[node name="Area2D" type="Area2D" parent="DeckKort/20"]
 position = Vector2(60, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/11/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/20/Area2D"]
 shape = SubResource("RectangleShape2D_y3p84")
 
-[node name="ColorRect" type="ColorRect" parent="DeckKort/11/Area2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="DeckKort/20/Area2D/CollisionShape2D"]
 offset_left = -69.6639
 offset_top = -82.6833
 offset_right = 66.3361
@@ -130,7 +130,7 @@ offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="21" type="Control" parent="DeckKort"]
+[node name="30" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 617.027
@@ -138,13 +138,13 @@ offset_top = 675.198
 offset_right = 772.027
 offset_bottom = 675.198
 
-[node name="Area2D" type="Area2D" parent="DeckKort/21"]
+[node name="Area2D" type="Area2D" parent="DeckKort/30"]
 position = Vector2(60, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/21/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/30/Area2D"]
 shape = SubResource("RectangleShape2D_y3p84")
 
-[node name="ColorRect" type="ColorRect" parent="DeckKort/21/Area2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="DeckKort/30/Area2D/CollisionShape2D"]
 offset_left = -69.6639
 offset_top = -82.6833
 offset_right = 66.3361
@@ -152,7 +152,7 @@ offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="31" type="Control" parent="DeckKort"]
+[node name="40" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 765.027
@@ -160,13 +160,13 @@ offset_top = 679.198
 offset_right = 920.027
 offset_bottom = 679.198
 
-[node name="Area2D" type="Area2D" parent="DeckKort/31"]
+[node name="Area2D" type="Area2D" parent="DeckKort/40"]
 position = Vector2(60, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/31/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/40/Area2D"]
 shape = SubResource("RectangleShape2D_y3p84")
 
-[node name="ColorRect" type="ColorRect" parent="DeckKort/31/Area2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="DeckKort/40/Area2D/CollisionShape2D"]
 offset_left = -69.6639
 offset_top = -82.6833
 offset_right = 66.3361
@@ -174,7 +174,7 @@ offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="41" type="Control" parent="DeckKort"]
+[node name="50" type="Control" parent="DeckKort"]
 layout_mode = 1
 anchor_left = 0.64
 anchor_top = 0.469
@@ -185,20 +185,20 @@ offset_top = 671.764
 offset_right = 243.518
 offset_bottom = 842.764
 
-[node name="Area2D" type="Area2D" parent="DeckKort/41"]
+[node name="Area2D" type="Area2D" parent="DeckKort/50"]
 position = Vector2(60, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/41/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/50/Area2D"]
 shape = SubResource("RectangleShape2D_y3p84")
 
-[node name="ColorRect" type="ColorRect" parent="DeckKort/41/Area2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="DeckKort/50/Area2D/CollisionShape2D"]
 offset_left = -69.6639
 offset_top = -82.6833
 offset_right = 66.3361
 offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 
-[node name="51" type="Control" parent="DeckKort"]
+[node name="60" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1067.03
@@ -206,13 +206,13 @@ offset_top = 683.198
 offset_right = 1222.03
 offset_bottom = 683.198
 
-[node name="Area2D" type="Area2D" parent="DeckKort/51"]
+[node name="Area2D" type="Area2D" parent="DeckKort/60"]
 position = Vector2(60, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/51/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/60/Area2D"]
 shape = SubResource("RectangleShape2D_y3p84")
 
-[node name="ColorRect" type="ColorRect" parent="DeckKort/51/Area2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="DeckKort/60/Area2D/CollisionShape2D"]
 offset_left = -69.6639
 offset_top = -82.6833
 offset_right = 66.3361
@@ -220,7 +220,7 @@ offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="61" type="Control" parent="DeckKort"]
+[node name="70" type="Control" parent="DeckKort"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1217.03
@@ -228,13 +228,13 @@ offset_top = 683.198
 offset_right = 1372.03
 offset_bottom = 683.198
 
-[node name="Area2D" type="Area2D" parent="DeckKort/61"]
+[node name="Area2D" type="Area2D" parent="DeckKort/70"]
 position = Vector2(60, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/61/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckKort/70/Area2D"]
 shape = SubResource("RectangleShape2D_y3p84")
 
-[node name="ColorRect" type="ColorRect" parent="DeckKort/61/Area2D/CollisionShape2D"]
+[node name="ColorRect" type="ColorRect" parent="DeckKort/70/Area2D/CollisionShape2D"]
 offset_left = -69.6639
 offset_top = -82.6833
 offset_right = 66.3361

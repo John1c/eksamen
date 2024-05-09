@@ -7,6 +7,7 @@ public partial class Testscreen : Node2D
 	private PackedScene cardPrefab;
 	List<List<Cardcontroller>> piles = new List<List<Cardcontroller>>();
 	List<Cardcontroller> inPlay = new List<Cardcontroller>();
+	List<bool> states = new List<bool>();
 	private int buttonPress = 0;
 
 	public void _On_Area_1(Area2D area){
@@ -28,16 +29,15 @@ public partial class Testscreen : Node2D
 	public override void _Process(double delta)
 	{
 		update_pile();
-		
-		GD.Print(inPlay[inPlay.Count-1].IsStacked);
-//		if(inPlay[inPlay.Count-1].IsStacked || inPlay[inPlay.Count-1].IsStacked_on_finish || inPlay[inPlay.Count-1].IsStacked_on_deck){
-//		inPlay[inPlay.Count-1].is_at_start = false;
-//		GD.Print(inPlay.Count-1);
-//		inPlay.RemoveAt(inPlay.Count-1);
-//		GD.Print(inPlay.Count-1);
-//		inPlay[inPlay.Count-1].faceUp = true;
-//		inPlay[inPlay.Count-1].UpdateCard();
-//			}
+
+		if(inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck){
+		inPlay[0].is_at_start = false;
+		GD.Print(inPlay.Count);
+		inPlay.RemoveAt(0);
+		GD.Print(inPlay.Count);
+		inPlay[0].faceUp = true;
+		inPlay[0].UpdateCard();
+			}
 	}
 	
 	
@@ -110,27 +110,30 @@ public void PileMaker()
 	piles.Add(tempPile);
 	GD.Print("Cap: " + piles[i].Capacity.ToString());
 	}
+	for(int i = 0; i < 7; i++){
+		bool occupyState = true;
+		states.Add(occupyState);
+		GD.Print(states[i]);
+	}
 	}
 	public void update_pile()
 	{
 	for(int i = 0; i < piles.Count; i++)
 	{ 
-	if(piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish	 || piles[i][0].IsStacked_on_deck)
-	{
-	//	cards.Add(piles[i][0]);
-		piles[i].RemoveAt(0);
-		if(piles[i].Count == 0)
+	if(piles[i].Count == 0)
 		{
-			piles.RemoveAt(i);
-//			piles[i].Clear();
-			break;
-		} 
+			states[i] = false;
+			GD.Print(states[i]);
+		} else if(piles[i].Count==0||piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish	 || piles[i][0].IsStacked_on_deck)
+		{
+	 
+		piles[i].RemoveAt(0);
 //		else if(piles[i].Count > 0){
 //
 //		}
 		piles[i][0].faceUp = true;
 		piles[i][0].UpdateCard();				
-	}	
+		}	
 
 	}
 	}
@@ -139,58 +142,40 @@ public void PileMaker()
 private void draw_card()
 {
 		buttonPress++;
-		int length = inPlay.Count-1;
 		//GD.Print(buttonPress);
 		
 		//tilføjer kort som kan ses og trækkes ud fra det resterende dæk
 		if(cards.Count == 1){
-			inPlay.Add(cards[0]);
+			inPlay.Insert(0,cards[0]);
 			cards.Clear();
 		} else if(cards.Count > 0){
-			inPlay.Add(cards[0]);
-//			inPlay[length].Show();
-			cards.RemoveAt(0);	
+			inPlay.Insert(0,cards[0]);
+			cards.RemoveAt(0);
 		} 
 		//Fylder cards op når den er tom
 		else if(cards.Count == 0){
-			GD.Print("Hello World");
-			inPlay.Reverse();
 			for(int i = 0; i < inPlay.Count;i++){
-				cards.Add(inPlay[i]);
-				cards[cards.Count-1].faceUp = false;
-//				cards[cards.Count-1].Hide();
-				GD.Print(i);
+				cards.Insert(0,inPlay[i]);
+				cards[0].faceUp = false;
+				cards[0].UpdateCard();
+				cards[0].Position =  new Vector2(400, 0);
+//				GD.Print(i);
 			}
 			inPlay.Clear();
-			for (int i = 0; i < cards.Count; i++)
-				{
-				cards[i].Position =  new Vector2(400, 0);
-				cards[i].faceUp = false;
-				cards[i].UpdateCard();
-				}
-		}
-		inPlay[length].is_at_start = true;
-		inPlay[length].faceUp = true;
-		inPlay[length].UpdateCard();
-		
-		if(buttonPress > 3){
-			inPlay[length-1].Position = new Vector2(460,300);
-			inPlay[length-2].Position = new Vector2(380,300);
-			inPlay[length].Position = new Vector2(540,300);
-		if(buttonPress == 22){
-				buttonPress = 0;
-			}
-		} else {
-			inPlay[length].Position = new Vector2(380+80*buttonPress,300);
-		}
 
-		if(length > 0){
-		inPlay[length-1].faceUp = false;
-		inPlay[length-1].UpdateCard();
 		}
-			GD.Print(inPlay[length].cardID);
+		inPlay[0].is_at_start = true;
+		inPlay[0].faceUp = true;
+		inPlay[0].UpdateCard();
+		inPlay[0].move_to_front();
+		inPlay[0].Position =  new Vector2(300,200);
 
-//		GD.Print(cards.Count);
-//		GD.Print(length);
+		if(inPlay.Count > 1){
+		inPlay[1].faceUp = false;
+		inPlay[1].UpdateCard();
+		}
+			GD.Print(inPlay[0].cardID);
+		GD.Print(cards.Count);
+		GD.Print(inPlay.Count);
 }
 }

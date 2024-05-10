@@ -23,6 +23,7 @@ public partial class Cardcontroller : Node2D
 	public Testscreen Stacked_on_finish_dropzone;
 	public Control Stacked_on_finish_area;
 	public Control Stacked_on_Deck_area;
+	public Mainscene Deck_area;
 	public Vector2 Prev_pos;
 
 	//Get og set metoder
@@ -137,7 +138,7 @@ public partial class Cardcontroller : Node2D
 		//tjekker for navnet af dens parent af parent får at få navnet på det øverste for at se om en konge kan placeres
 		if (area.GetParent().GetParent().Name == "DeckKort")
 		{
-			Stack_on_Deck(dropzone);
+			Stack_on_Deck(dropzone,area.GetParent().Name);
 		}
 		//tjekker for om kortet er stacked på et andet kort eller om det er ved start eller på et færdigt kort og handler ud fra det
 		if (!IsStacked && !card.is_at_start) Stack_on_card(card);
@@ -186,8 +187,9 @@ public partial class Cardcontroller : Node2D
 		}
 	}
 	// Metode til når kortet skal stacke på dækket kun for konger
-	public void Stack_on_Deck(Control card)
+	public void Stack_on_Deck(Control card, String name)
 	{
+		Mainscene Deck_area = card.GetParent().GetParent() as Mainscene;
 		{
 			if (isDragging && cardID == 13)
 			{
@@ -198,6 +200,10 @@ public partial class Cardcontroller : Node2D
 				IsStacked_on_deck = true;
 				ZIndex = card.ZIndex + 1;
 				Position = card.Position;
+
+				int nr = name.ToInt();
+				int realnr = (nr/10)-1;
+				Deck_area.states[realnr] = true;
 			}
 		}
 	}

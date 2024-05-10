@@ -2,18 +2,19 @@ using Godot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public partial class Mainscene : Node2D
 {
 	public Label _TidTager;
 	public Timer _Timer;
 	public int TimeStarted = 0;
-
 	List<Cardcontroller> cards = new List<Cardcontroller>();
 	private PackedScene cardPrefab;
 	List<List<Cardcontroller>> piles = new List<List<Cardcontroller>>();
 	List<Cardcontroller> inPlay = new List<Cardcontroller>();
 	public List<bool> states = new List<bool>();
+	public List<bool> states2 = new List<bool>();
 	private int buttonPress = 0;
 
 	// Called when the node enters the scene tree for the first time.
@@ -31,6 +32,9 @@ public partial class Mainscene : Node2D
 	public override void _Process(double delta)
 	{
 		update_pile();
+		Konge_check();
+
+		if (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck)
 		//Tjekker om det forreste kort i træk bunken er placeret et sted
 		if (inPlay.Count > 0 && (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck))
 		{
@@ -165,4 +169,28 @@ public partial class Mainscene : Node2D
 		}
 	}
 
+	public void Konge_check()
+	{
+		for (int i = 0; i < 7; i++)
+		{
+			bool occupyState = false;
+			states2.Add(occupyState);
+		}
+		for (int i = 0; i < states.Count; i++)
+		{
+			Control Deck = GetChild(3).GetChild(i) as Control;
+
+			if (states[i])
+			{
+				Deck.Visible = false;
+				Deck.ProcessMode = Control.ProcessModeEnum.Disabled;
+			}
+			else if (!states[i])
+			{
+				Deck.Visible = true;
+				Deck.ProcessMode = Control.ProcessModeEnum.Always;
+			}
+		}
+	}
 }
+

@@ -70,6 +70,7 @@ public partial class Mainscene : Node2D
 		{
 			cards[i].Position = new Vector2(0, 0);
 			AddChild(cards[i]);
+			cards[i].faceUp = false;
 			cards[i].UpdateCard();
 		}
 	}
@@ -152,7 +153,7 @@ public partial class Mainscene : Node2D
 				cards.Insert(0, inPlay[i]);
 				cards[0].faceUp = false;
 				cards[0].UpdateCard();
-				cards[0].Position = new Vector2(400, 0);
+				cards[0].Position = new Vector2(0, 0);
 			}
 			inPlay.Clear();
 		}
@@ -161,7 +162,7 @@ public partial class Mainscene : Node2D
 		inPlay[0].faceUp = true;
 		inPlay[0].UpdateCard();
 		inPlay[0].move_to_front();
-		inPlay[0].Position = new Vector2(300, 200);
+		inPlay[0].Position = new Vector2(0, 200);
 		//Sørger for at forreste kort ikke er 
 		if (inPlay.Count > 1)
 		{

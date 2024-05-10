@@ -23,7 +23,7 @@ public partial class Testscreen : Node2D
 	{
 		update_pile();
 
-		if (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck)
+		if (inPlay.Count > 0 && (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck))
 		{
 			inPlay[0].is_at_start = false;
 			GD.Print(inPlay.Count);
@@ -120,8 +120,9 @@ public partial class Testscreen : Node2D
 			{
 				states[i] = false;
 				GD.Print(states[i]);
+				GD.Print("Hello World");
 			}
-			else if (piles[i].Count == 0 || piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish || piles[i][0].IsStacked_on_deck)
+			else if (states[i] == true && (piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish || piles[i][0].IsStacked_on_deck))
 			{
 
 				piles[i].RemoveAt(0);

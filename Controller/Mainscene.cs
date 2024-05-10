@@ -32,12 +32,10 @@ public partial class Mainscene : Node2D
 	{
 		update_pile();
 
-		if (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck)
+		if (inPlay.Count > 0 && (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck))
 		{
 			inPlay[0].is_at_start = false;
-			GD.Print(inPlay.Count);
 			inPlay.RemoveAt(0);
-			GD.Print(inPlay.Count);
 			inPlay[0].faceUp = true;
 			inPlay[0].UpdateCard();
 		}
@@ -109,15 +107,16 @@ public partial class Mainscene : Node2D
 	{
 		for (int i = 0; i < piles.Count; i++)
 		{
-			if (piles[i].Count == 0)
+			if (piles[i].Count == 0 && states[i] == true) 
 			{
 				states[i] = false;
 			}
-			else if (piles[i].Count == 0 || piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish || piles[i][0].IsStacked_on_deck)
+			if (states[i] == true && (piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish || piles[i][0].IsStacked_on_deck))
 			{
 				piles[i].RemoveAt(0);
 				piles[i][0].faceUp = true;
 				piles[i][0].UpdateCard();
+				GD.Print("Hello WOrld");
 			}
 		}
 	}

@@ -26,23 +26,24 @@ public partial class Mainscene : Node2D
 		cardPrefab = ResourceLoader.Load("uid://cfufscq00nrbm") as PackedScene;
 		InstantiateCard();
 		PileMaker();
+		Konge_check();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		update_pile();
-		Konge_check();
-
-		if (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck)
 		//Tjekker om det forreste kort i træk bunken er placeret et sted
 		if (inPlay.Count > 0 && (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck))
 		{
+			GD.Print("Hello");
 			inPlay[0].is_at_start = false;
 			inPlay.RemoveAt(0);
 			inPlay[0].faceUp = true;
 			inPlay[0].UpdateCard();
 		}
+		inPlay[0].faceUp = true;
+		inPlay[0].UpdateCard();
 	}
 	public void _DisplayTimer()
 	{
@@ -119,7 +120,7 @@ public partial class Mainscene : Node2D
 			if (piles[i].Count == 0 && states[i] == true) 
 			{
 				states[i] = false;
-					
+				Konge_check();
 			}
 			//Tjekker om det forreste kort bliver sat på en anden bunke
 			if (states[i] == true && (piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish || piles[i][0].IsStacked_on_deck))
@@ -171,12 +172,7 @@ public partial class Mainscene : Node2D
 
 	public void Konge_check()
 	{
-		for (int i = 0; i < 7; i++)
-		{
-			bool occupyState = false;
-			states2.Add(occupyState);
-		}
-		for (int i = 0; i < states.Count; i++)
+		for (int i = 0; i < states.Count-1; i++)
 		{
 			Control Deck = GetChild(3).GetChild(i) as Control;
 

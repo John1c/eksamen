@@ -31,7 +31,7 @@ public partial class Mainscene : Node2D
 	public override void _Process(double delta)
 	{
 		update_pile();
-
+		//Tjekker om det forreste kort i træk bunken er placeret et sted
 		if (inPlay.Count > 0 && (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck))
 		{
 			inPlay[0].is_at_start = false;
@@ -49,6 +49,7 @@ public partial class Mainscene : Node2D
 	private void InstantiateCard()
 	{
 		GD.Print("Instantiate card");
+		//Genere alle kort
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 1; j <= 13; j++)
@@ -59,6 +60,7 @@ public partial class Mainscene : Node2D
 			}
 		}
 		ShuffleDeck();
+		//instantiere kortene
 		for (int i = 0; i < cards.Count; i++)
 		{
 			cards[i].Position = new Vector2(0, 0);
@@ -68,7 +70,7 @@ public partial class Mainscene : Node2D
 	}
 	public void ShuffleDeck()
 	{
-		//randomize the deck
+		//Blander kortenes position i dækket
 		GD.Print("Shuffling deck");
 		Random rnd = new Random();
 		for (int i = 0; i < cards.Count; i++)
@@ -81,6 +83,7 @@ public partial class Mainscene : Node2D
 	}
 	public void PileMaker()
 	{
+		//Laver 7 bunker af kort fra 1-7 kort.
 		for (int i = 0; i < 7; i++)
 		{
 			List<Cardcontroller> tempPile = new List<Cardcontroller>();
@@ -91,38 +94,40 @@ public partial class Mainscene : Node2D
 				tempPile[j].UpdateCard();
 				cards.Remove(cards[0]);
 				tempPile[j].Position = new Vector2(380 + i * 170, 85 + j * 65);
+				//variabel om bunken er færdig eller ej
+				bool occupyState = true;
+				states.Add(occupyState);
+
 			}
 			tempPile.Reverse();
 			tempPile[0].faceUp = true;
 			tempPile[0].UpdateCard();
 			piles.Add(tempPile);
 		}
-		for (int i = 0; i < 7; i++)
-		{
-			bool occupyState = true;
-			states.Add(occupyState);
-		}
+
 	}
 	public void update_pile()
 	{
+		//Bunken opdateres
 		for (int i = 0; i < piles.Count; i++)
 		{
+			//Tjekker om bunken er tom
 			if (piles[i].Count == 0 && states[i] == true) 
 			{
 				states[i] = false;
+					
 			}
+			//Tjekker om det forreste kort bliver sat på en anden bunke
 			if (states[i] == true && (piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish || piles[i][0].IsStacked_on_deck))
 			{
 				piles[i].RemoveAt(0);
 				piles[i][0].faceUp = true;
 				piles[i][0].UpdateCard();
-				GD.Print("Hello WOrld");
 			}
 		}
 	}
 	private void draw_card()
 	{
-		buttonPress++;
 		//tilføjer kort som kan ses og trækkes ud fra det resterende dæk
 		if (cards.Count == 1)
 		{
@@ -145,14 +150,14 @@ public partial class Mainscene : Node2D
 				cards[0].Position = new Vector2(400, 0);
 			}
 			inPlay.Clear();
-
 		}
+		//Definere værdier for kort der er i spil.
 		inPlay[0].is_at_start = true;
 		inPlay[0].faceUp = true;
 		inPlay[0].UpdateCard();
 		inPlay[0].move_to_front();
 		inPlay[0].Position = new Vector2(300, 200);
-
+		//Sørger for at forreste kort ikke er 
 		if (inPlay.Count > 1)
 		{
 			inPlay[1].faceUp = false;

@@ -6,33 +6,32 @@ using System.Runtime.CompilerServices;
 
 public partial class Mainscene : Node2D
 {
-	public Label _TidTager;
-	public Timer _Timer;
-	public int TimeStarted = 0;
+	public Label _tidTager;
+	public Timer _timer;
+	public int timeStarted = 0;
 	List<Cardcontroller> cards = new List<Cardcontroller>();
 	private PackedScene cardPrefab;
 	List<List<Cardcontroller>> piles = new List<List<Cardcontroller>>();
 	List<Cardcontroller> inPlay = new List<Cardcontroller>();
 	public List<bool> states = new List<bool>();
-	public List<bool> states2 = new List<bool>();
 	private int buttonPress = 0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_TidTager = GetNode<Label>("GUI/Timer/TidTager");
-		_Timer = GetNode<Timer>("GUI/Timer");
-		_Timer.Start();
+		_tidTager = GetNode<Label>("GUI/Timer/TidTager");
+		_timer = GetNode<Timer>("GUI/Timer");
+		_timer.Start();
 		cardPrefab = ResourceLoader.Load("uid://cfufscq00nrbm") as PackedScene;
 		InstantiateCard();
 		PileMaker();
-		Konge_check();
+		KongeCheck();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		update_pile();
+		UpdatePile();
 		//Tjekker om det forreste kort i træk bunken er placeret et sted
 		if (inPlay.Count > 0 && (inPlay[0].IsStacked || inPlay[0].IsStacked_on_finish || inPlay[0].IsStacked_on_deck))
 		{
@@ -47,8 +46,8 @@ public partial class Mainscene : Node2D
 	}
 	public void _DisplayTimer()
 	{
-		TimeStarted++;
-		_TidTager.Text = "Tid: " + TimeStarted;
+		timeStarted++;
+		_tidTager.Text = "Tid: " + timeStarted;
 	}
 
 	private void InstantiateCard()
@@ -112,7 +111,7 @@ public partial class Mainscene : Node2D
 		}
 
 	}
-	public void update_pile()
+	public void UpdatePile()
 	{
 		//Bunken opdateres
 		for (int i = 0; i < piles.Count; i++)
@@ -121,7 +120,7 @@ public partial class Mainscene : Node2D
 			if (piles[i].Count == 0 && states[i] == true) 
 			{
 				states[i] = false;
-				Konge_check();
+				KongeCheck();
 			}
 			//Tjekker om det forreste kort bliver sat på en anden bunke
 			if (states[i] == true && (piles[i][0].IsStacked || piles[i][0].IsStacked_on_finish || piles[i][0].IsStacked_on_deck))
@@ -132,7 +131,7 @@ public partial class Mainscene : Node2D
 			}
 		}
 	}
-	private void draw_card()
+	private void DrawCard()
 	{
 		//tilføjer kort som kan ses og trækkes ud fra det resterende dæk
 		if (cards.Count == 1)
@@ -171,7 +170,7 @@ public partial class Mainscene : Node2D
 		}
 	}
 
-	public void Konge_check()
+	public void KongeCheck()
 	{
 		for (int i = 0; i < states.Count-1; i++)
 		{

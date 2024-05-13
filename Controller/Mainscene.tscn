@@ -358,5 +358,5 @@ offset_bottom = 91.3165
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="GUI/Button" to="." method="draw_card"]
+[connection signal="pressed" from="GUI/Button" to="." method="DrawCard"]
 [connection signal="timeout" from="GUI/Timer" to="." method="_DisplayTimer"]

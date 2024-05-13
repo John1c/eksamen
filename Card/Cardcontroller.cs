@@ -20,7 +20,6 @@ public partial class Cardcontroller : Node2D
 
 	public Cardcontroller Stacked_on_card;
 	public Cardcontroller Stacked_on_finish_card;
-	public Testscreen Stacked_on_finish_dropzone;
 	public Control Stacked_on_finish_area;
 	public Control Stacked_on_Deck_area;
 	public Mainscene Deck_area;
@@ -149,7 +148,8 @@ public partial class Cardcontroller : Node2D
 	{
 		Stacked_on_card = card;
 		//lang if sætning som tjekker om det kan stack på et kort og om mønstrene er forskellige og om de er lige eller ulige
-		if (!card.Has_card_stacked && isDragging && card.faceUp && cardID == card.cardID - 1 && ((CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
+		if (!card.Has_card_stacked && isDragging && card.faceUp && cardID == card.cardID - 1 && (
+			(CardPattern % 2 == 0 && card.CardPattern % 2 != 0) || (CardPattern % 2 != 0 && card.CardPattern % 2 == 0)))
 		{
 			// forskellige bools bliver sat til true og false og bliver flyttet til kortet som det stacker på
 			isDragging = false;
